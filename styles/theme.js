@@ -58,30 +58,24 @@ const theme = responsiveFontSizes(createMuiTheme({
       contrastText: '#ffffff'
     },
     background: {
-      default: '#ffffff',
-      primary: '#ecebed',
-      secondary: '#343a40'
+      default: '#182231',
+      primary: '#0F1927'
     },
     text: {
-      primary: '#4e4e4f',
-      secondary: '#a2a1b2'
+      primary: '#ffffff',
+      secondary: '#415258'
     },
   },
   custom: {
     palette: {
-      grey: '#e6e6e6',
-      darkGrey: '#616166',
-      orange: '#d36738',
       white: '#ffffff',
-      pink: '#d808dd',
-      red: '#8d161e',
-      yellow: '#ffb418',
-      green: '#2B9938',
-      darkGreen: '#073920',
-      lightGreen: '#5dc1a3',
-      blue: '#4595e6',
-      lightBlue: '#d9e8ff',
       black: '#000000',
+      grey: '#8399b8',
+      orange: '#d36738',
+      red: '#ef6c6c',
+      yellow: '#efc865',
+      green: '#50e9d2',
+      blue: '#2774FE',
       border: '#999999'
     },
     layout: {

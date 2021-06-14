@@ -6,6 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 
 import theme from 'styles/theme'
 import store from 'store'
+import Layout from 'Layout'
 import InitProvider from 'utils/hocs/InitProvider'
 import PopUpProvider from 'utils/hocs/PopUpProvider'
 import * as COMMON_CONSTANTS from 'utils/constants/common'
@@ -48,7 +49,9 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <PopUpProvider />
           <CssBaseline />
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </Provider>
     </>

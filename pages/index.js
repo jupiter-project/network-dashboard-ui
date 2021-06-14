@@ -1,11 +1,11 @@
 
 import Home from 'containers/Home'
-import Layout from 'Layout'
+import { BlockProvider } from 'contexts/block-context'
 
 export default function HomePage() {
   return (
-    <Layout>
+    <BlockProvider>
       <Home />
-    </Layout>
+    </BlockProvider>
   )
 }

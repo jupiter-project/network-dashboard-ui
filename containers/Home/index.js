@@ -1,28 +1,34 @@
 
 import { memo } from 'react'
+import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-import HomeHeader from './HomeHeader'
-import HomeJourney from './HomeJourney'
+import LatestBlock from './LatestBlock'
+import BlockVersion from './BlockVersion'
+import BlockInfo from './BlockInfo'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
-    backgroundColor: theme.palette.background.default,
-    marginBottom: theme.spacing(15)
-  }
+    padding: theme.spacing(3, 0)
+  },
 }));
 
 const Home = () => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <main className={classes.root}>
-      <HomeHeader />
-      <HomeJourney />
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={6} md={4}>
+          <LatestBlock />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <BlockVersion />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <BlockInfo />
+        </Grid>
+      </Grid>
     </main>
   )
 }

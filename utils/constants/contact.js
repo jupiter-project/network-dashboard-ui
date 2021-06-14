@@ -1,5 +1,5 @@
 const SUPPORT_EMAIL = 'info@gojupiter.tech';
-const SITE_URL = 'https://leda.jup.io';
+const SITE_URL = 'https://galileo.jup.io';
 
 export {
   SUPPORT_EMAIL,

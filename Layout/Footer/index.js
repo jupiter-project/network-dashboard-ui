@@ -1,12 +1,13 @@
 
 import { memo } from 'react'
-import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 
-import FooterContact from './FooterContact'
-import { FOOTER_BACKGROUND_IMAGE_PATH } from 'utils/constants/image-paths'
+import Logo from 'components/Logo'
+import LinkButton from 'components/UI/Buttons/LinkButton'
+import SocialGroup from './SocialGroup'
 import { useCommonStyles } from 'styles/use-styles'
+import { SUPPORT_EMAIL } from 'utils/constants/contact'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,22 +15,24 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%',
-    backgroundImage: `url(${FOOTER_BACKGROUND_IMAGE_PATH})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
   },
   container: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    color: theme.custom.palette.blue,
-    paddingTop: theme.spacing(6),
-    paddingBottom: theme.spacing(6),
+    alignItems: 'center',
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     }
-  }
+  },
+  email: {
+    fontSize: 18,
+    fontWeight: 600,
+    color: theme.palette.text.primary,
+    textDecoration: 'unset',
+  },
 }));
 
 const Footer = () => {
@@ -38,18 +41,16 @@ const Footer = () => {
 
   return (
     <footer className={classes.root}>
-      <Grid container className={clsx(classes.container, commonClasses.containerWidth)}>
-        <Grid item sm={12} md={6} lg={9}>
-          <Grid container>
-            <Grid item md={12} lg={6}>
-              <FooterContact />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item sm={12} md={6} lg={3}>
-
-        </Grid>
-      </Grid>
+      <div className={clsx(classes.container, commonClasses.containerWidth)}>
+        <Logo isWhite />
+        <SocialGroup />
+        <LinkButton
+          href={`mailto:${SUPPORT_EMAIL}`}
+          className={classes.email}
+        >
+          {SUPPORT_EMAIL}
+        </LinkButton>
+      </div>
     </footer>
   );
 };
