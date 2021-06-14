@@ -3,23 +3,23 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import * as jupiterAPI from 'services/api-jupiter'
 
 const BlockContext = createContext(null)
+const INTERVAL_MS = 180000
 
 export function BlockProvider({ children }) {
   const [blockStatus, setBlockStatus] = useState({})
 
   useEffect(() => {
-    if (true) {
+    const interval = setInterval(() => {
       getInit();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, INTERVAL_MS);
+
+    return () => clearInterval(interval);
   }, []);
 
   const getInit = async () => {
     try {
       const response = await jupiterAPI.getBlockchainStatus();
-
       setBlockStatus(response)
-      console.log('response => ', response)
     } catch (error) {
       console.log('[Error] getInit => ', error)
     }
@@ -27,9 +27,7 @@ export function BlockProvider({ children }) {
 
   return (
     <BlockContext.Provider
-      value={{
-        blockStatus
-      }}
+      value={{ blockStatus }}
     >
       {children}
     </BlockContext.Provider>
@@ -38,9 +36,7 @@ export function BlockProvider({ children }) {
 
 export function useBlock() {
   const context = useContext(BlockContext)
-  if (!context) {
-    throw new Error('Missing stats context')
-  }
+  if (!context) { throw new Error('Missing stats context') }
 
   const {
     blockStatus
