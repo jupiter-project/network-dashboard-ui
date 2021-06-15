@@ -42,7 +42,7 @@ const Footer = () => {
   return (
     <footer className={classes.root}>
       <div className={clsx(classes.container, commonClasses.containerWidth)}>
-        <Logo isWhite />
+        <Logo />
         <SocialGroup />
         <LinkButton
           href={`mailto:${SUPPORT_EMAIL}`}

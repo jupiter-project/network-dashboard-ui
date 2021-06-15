@@ -1,44 +1,55 @@
 
 import { memo } from 'react'
 import Link from 'next/link'
+import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import clsx from 'clsx'
 
 import LINKS from 'utils/constants/links'
-import {
-  WHITE_LOGO_IMAGE_PATH,
-  BLACK_LOGO_IMAGE_PATH
-} from 'utils/constants/image-paths'
+import { LOGO_IMAGE_PATH } from 'utils/constants/image-paths'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    textDecoration: 'unset'
+  },
   picture: {
     display: 'flex',
   },
   img: {
-    width: 120,
-    height: 40,
+    height: 45,
     objectFit: 'contain'
   },
+  label: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    lineHeight: 'normal',
+    color: theme.palette.text.secondary,
+    marginLeft: theme.spacing(1)
+  }
 }));
 
 const Logo = ({
-  isWhite = false,
   className,
   ...rest
 }) => {
   const classes = useStyles();
 
-  const LOGO_IMAGE_PATH = isWhite ? WHITE_LOGO_IMAGE_PATH : BLACK_LOGO_IMAGE_PATH;
-
   return (
     <Link href={LINKS.HOME.HREF}>
-      <a className={className}>
+      <a className={clsx(classes.root, className)}>
         <picture className={classes.picture} {...rest}>
           <source srcSet={LOGO_IMAGE_PATH} />
           <img
             className={classes.img}
             src={LOGO_IMAGE_PATH}
-            alt='logo' />
+            alt='logo'
+          />
         </picture>
+        <Typography className={classes.label}>
+          GALILEO
+        </Typography>
       </a>
     </Link>
   )
