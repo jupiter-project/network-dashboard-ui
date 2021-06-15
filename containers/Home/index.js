@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import LatestBlock from './LatestBlock'
 import BlockVersion from './BlockVersion'
 import BlockInfo from './BlockInfo'
+import BlockHistory from './BlockHistory'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,6 +28,9 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <BlockInfo />
+        </Grid>
+        <Grid item xs={12}>
+          <BlockHistory />
         </Grid>
       </Grid>
     </main>

@@ -9,6 +9,7 @@ export function BlockProvider({ children }) {
   const [blockStatus, setBlockStatus] = useState({})
 
   useEffect(() => {
+    getInit();
     const interval = setInterval(() => {
       getInit();
     }, INTERVAL_MS);

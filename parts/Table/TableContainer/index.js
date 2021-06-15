@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     textTransform: 'uppercase',
     border: 'unset',
-    padding: theme.spacing(1, 0)
+    color: theme.palette.text.secondary
   },
 }));
 

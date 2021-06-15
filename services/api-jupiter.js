@@ -17,6 +17,11 @@ const getBlockchainStatus = async () => {
   return await apiAxios.get(`/nxt?requestType=getBlockchainStatus`)
 }
 
+const getBlocks = async ({ firstIndex, lastIndex }) => {
+  return await apiAxios.get(`/nxt?requestType=getBlocks&firstIndex=${firstIndex}&lastIndex=${lastIndex}`)
+}
+
 export {
+  getBlocks,
   getBlockchainStatus
 };
