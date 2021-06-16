@@ -4,6 +4,10 @@ const LINKS = Object.freeze({
     TITLE: 'Home',
     HREF: '/'
   },
+  BLOCKS: {
+    TITLE: 'Blocks',
+    HREF: '/blocks'
+  },
 });
 
 export default LINKS;

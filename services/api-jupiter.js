@@ -13,15 +13,30 @@ apiAxios.interceptors.response.use((response) => {
   return response.data;
 });
 
+const getBlock = async (block) => {
+  return await apiAxios.get(`/nxt?requestType=getBlock&includeTransactions=true&block=${block}`)
+}
+
+const getBlocks = async ({ firstIndex, lastIndex }) => {
+  return await apiAxios.get(`/nxt?requestType=getBlocks&includeTransactions=true&firstIndex=${firstIndex}&lastIndex=${lastIndex}`)
+}
+
 const getBlockchainStatus = async () => {
   return await apiAxios.get(`/nxt?requestType=getBlockchainStatus`)
 }
 
-const getBlocks = async ({ firstIndex, lastIndex }) => {
-  return await apiAxios.get(`/nxt?requestType=getBlocks&firstIndex=${firstIndex}&lastIndex=${lastIndex}`)
+const getNextBlockGenerators = async () => {
+  return await apiAxios.get(`/nxt?requestType=getNextBlockGenerators&limit=10`)
+}
+
+const getAccount = async (account) => {
+  return await apiAxios.get(`/nxt?requestType=getAccount&account=${account}`)
 }
 
 export {
+  getAccount,
+  getBlock,
   getBlocks,
-  getBlockchainStatus
+  getBlockchainStatus,
+  getNextBlockGenerators
 };

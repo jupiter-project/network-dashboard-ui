@@ -15,13 +15,17 @@ import { useBlock } from 'contexts/block-context'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   tableContainer: {
     overflowX: 'overlay'
+  },
+  block: {
+    color: theme.custom.palette.green,
+    cursor: 'pointer'
   }
 }));
 
-const ROWS_PER_PAGE = 10;
+const ROWS_PER_PAGE = 8;
 const columns = [
   { id: 'height', label: 'Height', minWidth: 90 },
   { id: 'age', label: 'Age', minWidth: 120 },
@@ -30,7 +34,9 @@ const columns = [
   { id: 'generatorRS', label: 'Generator', minWidth: 140 },
 ];
 
-const BlockHistory = () => {
+const BlockHistory = ({
+  setSelectedBlock
+}) => {
   const classes = useStyles();
   const { blockStatus } = useBlock();
 
@@ -53,19 +59,23 @@ const BlockHistory = () => {
     load()
   }, [page])
 
+  const blockHandler = (block) => () => {
+    setSelectedBlock(block)
+  }
+
   return (
-    <CardWrapper>
+    <CardWrapper title='Blocks'>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
           {blocks.map((block) => (
             <TableRow key={block.block}>
-              <TableCell component='th' scope='row'>
+              <TableCell component='th' scope='row' onClick={blockHandler(block)} className={classes.block}>
                 {block.height}
               </TableCell>
               <TableCell>
                 {getDateFromTimestamp(block.timestamp)}
               </TableCell>
-              <TableCell component='th' scope='row'>
+              <TableCell>
                 {block.transactions.length}
               </TableCell>
               <TableCell>
