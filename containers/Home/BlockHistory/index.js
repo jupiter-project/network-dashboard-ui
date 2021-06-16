@@ -10,15 +10,12 @@ import { Pagination } from '@material-ui/lab'
 
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
+import CardWrapper from 'parts/CardWrapper'
 import { useBlock } from 'contexts/block-context'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
+import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-  },
   tableContainer: {
     overflowX: 'overlay'
   }
@@ -26,10 +23,11 @@ const useStyles = makeStyles(() => ({
 
 const ROWS_PER_PAGE = 10;
 const columns = [
-  { id: 'block', label: 'Block', minWidth: 90 },
-  { id: 'date', label: 'Date', minWidth: 120 },
+  { id: 'height', label: 'Height', minWidth: 90 },
+  { id: 'age', label: 'Age', minWidth: 120 },
+  { id: 'txs', label: 'Txs', minWidth: 120 },
+  { id: 'fee', label: 'Amt + Fee', minWidth: 140 },
   { id: 'generatorRS', label: 'Generator', minWidth: 140 },
-  { id: 'cumulativeDifficulty', label: 'Cumulative Difficulty', minWidth: 140 },
 ];
 
 const BlockHistory = () => {
@@ -56,24 +54,26 @@ const BlockHistory = () => {
   }, [page])
 
   return (
-    <main className={classes.root}>
+    <CardWrapper>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
           {blocks.map((block) => (
             <TableRow key={block.block}>
               <TableCell component='th' scope='row'>
-                {block.block}
+                {block.height}
               </TableCell>
               <TableCell>
                 {getDateFromTimestamp(block.timestamp)}
               </TableCell>
+              <TableCell component='th' scope='row'>
+                {block.transactions.length}
+              </TableCell>
+              <TableCell>
+                {`${block.totalAmountNQT / NQT_WEIGHT} + ${block.totalFeeNQT / NQT_WEIGHT}`}
+              </TableCell>
               <TableCell>
                 {block.generatorRS}
               </TableCell>
-              <TableCell>
-                {block.cumulativeDifficulty}
-              </TableCell>
-
             </TableRow>
           ))}
         </TableContainer>
@@ -85,7 +85,7 @@ const BlockHistory = () => {
         count={Math.ceil(blockStatus.numberOfBlocks / ROWS_PER_PAGE)}
         onChange={(event, page) => setPage(page - 1)}
       />
-    </main>
+    </CardWrapper>
   )
 }
 

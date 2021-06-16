@@ -9,6 +9,7 @@ import store from 'store'
 import Layout from 'Layout'
 import InitProvider from 'utils/hocs/InitProvider'
 import PopUpProvider from 'utils/hocs/PopUpProvider'
+import { BlockProvider } from 'contexts/block-context'
 import * as COMMON_CONSTANTS from 'utils/constants/common'
 import { BANNER_IMAGE_PATH } from 'utils/constants/image-paths'
 
@@ -49,9 +50,11 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <PopUpProvider />
           <CssBaseline />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <BlockProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </BlockProvider>
         </ThemeProvider>
       </Provider>
     </>

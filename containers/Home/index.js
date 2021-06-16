@@ -29,7 +29,10 @@ const Home = () => {
         <Grid item xs={12} sm={6} md={4}>
           <BlockInfo />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={8}>
+          <BlockHistory />
+        </Grid>
+        <Grid item xs={12} md={4}>
           <BlockHistory />
         </Grid>
       </Grid>
