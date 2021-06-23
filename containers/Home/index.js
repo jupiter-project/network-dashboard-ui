@@ -6,8 +6,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import LatestBlock from './LatestBlock'
 import BlockVersion from './BlockVersion'
 import BlockInfo from './BlockInfo'
-import NextBlockGenerators from './NextBlockGenerators'
-import GeneratorDetail from './GeneratorDetail'
+import RewardInfo from './RewardInfo'
+import UnconfirmedTransactions from './UnconfirmedTransactions'
+import BlockHistory from './BlockHistory'
+import BlockDetail from './BlockDetail'
+import BlockTransactions from './BlockTransactions'
+import TransactionDetail from './TransactionDetail'
 import { isEmpty } from 'utils/helpers/utility'
 
 const useStyles = makeStyles(theme => ({
@@ -18,27 +22,57 @@ const useStyles = makeStyles(theme => ({
 
 const Home = () => {
   const classes = useStyles()
-  const [selectedGenerator, setSelectedGenerator] = useState({})
+
+  const [selectedBlock, setSelectedBlock] = useState({})
+  const [selectedTransaction, setSelectedTransaction] = useState({})
 
   return (
     <main className={classes.root}>
       <Grid container spacing={4}>
-        <Grid item xs={12} sm={6} md={4}>
-          <LatestBlock />
+        <Grid item xs={12} md={8}>
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={6}>
+              <BlockVersion />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <LatestBlock />
+            </Grid>
+            <Grid item xs={12}>
+              <UnconfirmedTransactions />
+            </Grid>
+            <Grid item xs={12}>
+              <BlockHistory setSelectedBlock={setSelectedBlock} />
+            </Grid>
+            {!isEmpty(selectedBlock.transactions) &&
+              <Grid item xs={12}>
+                <BlockTransactions
+                  transactions={selectedBlock.transactions}
+                  setSelectedTransaction={setSelectedTransaction}
+                />
+              </Grid>
+            }
+            {!isEmpty(selectedBlock) &&
+              <Grid item xs={12} sm={6}>
+                <BlockDetail selectedBlock={selectedBlock} />
+              </Grid>
+            }
+            {!isEmpty(selectedTransaction) &&
+              <Grid item xs={12} sm={6}>
+                <TransactionDetail transaction={selectedTransaction} />
+              </Grid>
+            }
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <BlockVersion />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <BlockInfo />
-        </Grid>
-        <Grid item xs={12} md={7}>
-          <NextBlockGenerators setSelectedGenerator={setSelectedGenerator} />
-        </Grid>
-        <Grid item xs={12} md={5}>
-          {!isEmpty(selectedGenerator) &&
-            <GeneratorDetail generator={selectedGenerator} />
-          }
+
+        <Grid item xs={12} md={4}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <BlockInfo />
+            </Grid>
+            <Grid item xs={12}>
+              <RewardInfo />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </main>

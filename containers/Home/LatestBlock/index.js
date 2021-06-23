@@ -9,7 +9,7 @@ import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 
 const useStyles = makeStyles(theme => ({
   value: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     color: theme.custom.palette.blue
   }
@@ -21,9 +21,9 @@ const LatestBlock = () => {
 
   return (
     <CardWrapper>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Typography color='textSecondary'>
+          <Typography variant='body1' color='textSecondary'>
             Latest Block Number
           </Typography>
           <Typography className={classes.value}>
@@ -31,7 +31,7 @@ const LatestBlock = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography color='textSecondary'>
+          <Typography variant='body1' color='textSecondary'>
             Latest Block Time
           </Typography>
           <Typography className={classes.value}>

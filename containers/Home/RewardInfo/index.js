@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Grid } from '@material-ui/core'
 
 import CardWrapper from 'parts/CardWrapper'
-import SearchInput from './SearchInput'
 
 const useStyles = makeStyles(theme => ({
   value: {
@@ -14,42 +13,30 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const BlockInfo = () => {
+const RewardInfo = () => {
   const classes = useStyles();
 
   return (
     <CardWrapper>
       <Grid container spacing={1}>
         <Grid item xs={12}>
-          <Typography variant='body1' color='textSecondary'>
-            TX per Block Avg
-          </Typography>
           <Typography className={classes.value}>
-            4.5
+            DEX Volume = 2, 394.39 JUP
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant='body1' color='textSecondary'>
-            Fee per Block Avg
-          </Typography>
           <Typography className={classes.value}>
-            22.3
+            $Forge APY = 23.4%
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant='body1' color='textSecondary'>
-            Block generation Time
-          </Typography>
           <Typography className={classes.value}>
-            230s
+            Node Rewards = 56 JUP
           </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <SearchInput />
         </Grid>
       </Grid>
     </CardWrapper>
   )
 };
 
-export default memo(BlockInfo);
+export default memo(RewardInfo);

@@ -21,6 +21,10 @@ const getBlocks = async ({ firstIndex, lastIndex }) => {
   return await apiAxios.get(`/nxt?requestType=getBlocks&includeTransactions=true&firstIndex=${firstIndex}&lastIndex=${lastIndex}`)
 }
 
+const getUnconfirmedTransactions = async () => {
+  return await apiAxios.get(`/nxt?requestType=getUnconfirmedTransactions&firstIndex=${0}&lastIndex=${20}`)
+}
+
 const getBlockchainStatus = async () => {
   return await apiAxios.get(`/nxt?requestType=getBlockchainStatus`)
 }
@@ -38,5 +42,6 @@ export {
   getBlock,
   getBlocks,
   getBlockchainStatus,
-  getNextBlockGenerators
+  getNextBlockGenerators,
+  getUnconfirmedTransactions
 };

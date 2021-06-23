@@ -8,6 +8,7 @@ const INTERVAL_MS = 30000
 export function BlockProvider({ children }) {
   const [blockStatus, setBlockStatus] = useState({})
   const [generatorsInfo, setGeneratorsInfo] = useState([])
+  const [unconfirmedTransactions, setUnconfirmedTransactions] = useState([])
 
   useEffect(() => {
     getInit();
@@ -22,13 +23,17 @@ export function BlockProvider({ children }) {
     try {
       const [
         blockStatus,
-        generatorsInfo
+        generatorsInfo,
+        unconfirmedTransactions
       ] = await Promise.all([
         jupiterAPI.getBlockchainStatus(),
-        jupiterAPI.getNextBlockGenerators()
+        jupiterAPI.getNextBlockGenerators(),
+        jupiterAPI.getUnconfirmedTransactions()
       ])
       setBlockStatus(blockStatus)
       setGeneratorsInfo(generatorsInfo)
+      console.log(unconfirmedTransactions)
+      setUnconfirmedTransactions(unconfirmedTransactions?.unconfirmedTransactions || [])
     } catch (error) {
       console.log('[Error] getInit => ', error)
     }
@@ -38,7 +43,8 @@ export function BlockProvider({ children }) {
     <BlockContext.Provider
       value={{
         blockStatus,
-        generatorsInfo
+        generatorsInfo,
+        unconfirmedTransactions
       }}
     >
       {children}
@@ -52,11 +58,13 @@ export function useBlock() {
 
   const {
     blockStatus,
-    generatorsInfo
+    generatorsInfo,
+    unconfirmedTransactions
   } = context
 
   return {
     blockStatus,
-    generatorsInfo
+    generatorsInfo,
+    unconfirmedTransactions
   }
 }
