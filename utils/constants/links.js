@@ -8,6 +8,10 @@ const LINKS = Object.freeze({
     TITLE: 'Blocks',
     HREF: '/blocks'
   },
+  TRANSACTIONS: {
+    TITLE: 'Transactions',
+    HREF: '/transactions'
+  },
 });
 
 export default LINKS;
