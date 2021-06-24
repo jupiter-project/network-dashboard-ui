@@ -10,7 +10,9 @@ import {
 import { useBlock } from 'contexts/block-context'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
+import AccountItem from 'parts/AccountItem'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
+import getMainType from 'utils/helpers/types/getMainType'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles((theme) => ({
@@ -52,10 +54,13 @@ const UnconfirmedTransactions = () => {
                 {getDateFromTimestamp(transaction.timestamp)}
               </TableCell>
               <TableCell>
-                {transaction.senderRS}
+                <AccountItem
+                  account={transaction.sender}
+                  accountRS={transaction.senderRS}
+                />
               </TableCell>
               <TableCell>
-                {transaction.type}
+                {getMainType(transaction.type)}
               </TableCell>
               <TableCell>
                 {`${transaction.amountNQT / NQT_WEIGHT} + ${transaction.feeNQT / NQT_WEIGHT}`}

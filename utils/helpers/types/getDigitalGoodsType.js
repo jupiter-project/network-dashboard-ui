@@ -1,0 +1,26 @@
+import TRANSACTION_TYPES from "utils/constants/transaction-types"
+
+const getDigitalGoodsType = (type) => {
+  switch (type) {
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_LISTING:
+      return 'LISTING';
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_DELISTING:
+      return 'DELISTING';
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_PRICE_CHANGE:
+      return 'PRICE CHANGE';
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_QUANTITY_CHANGE:
+      return 'QUANTITY CHANGE';
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_PURCHASE:
+      return 'PURCHASE';
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_DELIVERY:
+      return 'DELIVERY';
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_FEEDBACK:
+      return 'FEEDBACK';
+    case TRANSACTION_TYPES.SUBTYPE_DIGITAL_GOODS_REFUND:
+      return 'REFUND';
+    default:
+      return 'LISTING';
+  }
+}
+
+export default getDigitalGoodsType

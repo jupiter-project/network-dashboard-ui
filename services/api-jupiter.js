@@ -41,6 +41,22 @@ const getForgeAsset = async () => {
   return await apiAxios.get(`/nxt?requestType=getAssetAccounts&asset=15210174725739850610&firstIndex=${0}&lastIndex=${0}`)
 }
 
+const getBlockchainTransactions = async ({ account, firstIndex, lastIndex }) => {
+  return await apiAxios.get(`/nxt?requestType=getBlockchainTransactions&account=${account}&firstIndex=${firstIndex}&lastIndex=${lastIndex}`)
+}
+
+const getAccountAssets = async (account) => {
+  return await apiAxios.get(`/nxt?requestType=getAccountAssets&account=${account}&includeAssetInfo=true`)
+}
+
+const getAccountCurrencies = async (account) => {
+  return await apiAxios.get(`/nxt?requestType=getAccountCurrencies&account=${account}&includeCurrencyInfo=true`)
+}
+
+const getAliases = async (account) => {
+  return await apiAxios.get(`/nxt?requestType=getAliases&account=${account}`)
+}
+
 export {
   getAccount,
   getBlock,
@@ -48,5 +64,9 @@ export {
   getBlockchainStatus,
   getNextBlockGenerators,
   getUnconfirmedTransactions,
-  getForgeAsset
+  getForgeAsset,
+  getBlockchainTransactions,
+  getAccountAssets,
+  getAccountCurrencies,
+  getAliases
 };

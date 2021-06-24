@@ -6,13 +6,11 @@ import {
   TableCell,
   TableRow
 } from '@material-ui/core'
-import { Pagination } from '@material-ui/lab'
 
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
-import AccountItem from 'parts/AccountItem'
-import { useBlock } from 'contexts/block-context'
+import getMainType from 'utils/helpers/types/getMainType'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
@@ -28,79 +26,70 @@ const useStyles = makeStyles((theme) => ({
 
 const ROWS_PER_PAGE = 8;
 const columns = [
-  { id: 'height', label: 'Height', minWidth: 90 },
-  { id: 'age', label: 'Age', minWidth: 120 },
-  { id: 'txs', label: 'Txs', minWidth: 120 },
+  { id: 'id', label: 'ID', minWidth: 90 },
+  { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
+  { id: 'sender', label: 'Sender', minWidth: 120 },
+  { id: 'type', label: 'Type', minWidth: 120 },
   { id: 'fee', label: 'Amt + Fee', minWidth: 140 },
-  { id: 'generatorRS', label: 'Generator', minWidth: 140 },
 ];
 
-const BlockHistory = ({
-  setSelectedBlock
+const TransactionHistory = ({
+  account,
+  setSelectedTransaction
 }) => {
   const classes = useStyles();
-  const { blockStatus } = useBlock();
 
-  const [blocks, setBlocks] = useState([])
+  const [transactions, setTransactions] = useState([])
   const [page, setPage] = useState(0)
 
   useEffect(() => {
     const load = async () => {
       try {
         const params = {
+          account,
           firstIndex: page * ROWS_PER_PAGE,
           lastIndex: (page + 1) * ROWS_PER_PAGE
         }
-        const { blocks = [] } = await jupiterAPI.getBlocks(params);
-        setBlocks(blocks)
+        const { transactions = [] } = await jupiterAPI.getBlockchainTransactions(params);
+        setTransactions(transactions)
       } catch (error) {
         console.log(error)
       }
     }
     load()
-  }, [page])
+  }, [account, page])
 
-  const blockHandler = (block) => () => {
-    setSelectedBlock(block)
+  const transactionHandler = (transaction) => () => {
+    setSelectedTransaction(transaction)
   }
 
   return (
-    <CardWrapper title='Blocks'>
+    <CardWrapper title='Transactions'>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
-          {blocks.map((block) => (
-            <TableRow key={block.block}>
-              <TableCell component='th' scope='row' onClick={blockHandler(block)} className={classes.block}>
-                {block.height}
+          {transactions.map((transaction) => (
+            <TableRow key={transaction.transaction}>
+              <TableCell component='th' scope='row' onClick={transactionHandler(transaction)} className={classes.block}>
+                {transaction.transaction}
               </TableCell>
               <TableCell>
-                {getDateFromTimestamp(block.timestamp)}
+                {getDateFromTimestamp(transaction.timestamp)}
               </TableCell>
               <TableCell>
-                {block.transactions.length}
+                {transaction.sender}
               </TableCell>
               <TableCell>
-                {`${block.totalAmountNQT / NQT_WEIGHT} + ${block.totalFeeNQT / NQT_WEIGHT}`}
+                {getMainType(transaction.type)}
               </TableCell>
               <TableCell>
-                <AccountItem
-                  account={block.generator}
-                  accountRS={block.generatorRS}
-                />
+                {`${transaction.amountNQT / NQT_WEIGHT} + ${transaction.feeNQT / NQT_WEIGHT}`}
               </TableCell>
             </TableRow>
           ))}
         </TableContainer>
       </Box>
-      <Pagination
-        variant='outlined'
-        shape='rounded'
-        page={page + 1}
-        count={Math.ceil(blockStatus.numberOfBlocks / ROWS_PER_PAGE)}
-        onChange={(event, page) => setPage(page - 1)}
-      />
     </CardWrapper>
   )
 }
 
-export default memo(BlockHistory)
+export default memo(TransactionHistory)

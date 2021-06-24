@@ -8,9 +8,9 @@ const LINKS = Object.freeze({
     TITLE: 'Generators',
     HREF: '/generators'
   },
-  TRANSACTIONS: {
-    TITLE: 'Transactions',
-    HREF: '/transactions'
+  ACCOUNT: {
+    TITLE: 'Account',
+    HREF: '/account/[account]'
   },
 });
 

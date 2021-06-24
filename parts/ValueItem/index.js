@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
   },
   value: {
     fontSize: 18,
-    color: theme.custom.palette.blue
+    color: theme.custom.palette.blue,
+    wordBreak: 'break-word'
   }
 }));
 
