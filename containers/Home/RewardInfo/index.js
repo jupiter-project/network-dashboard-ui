@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Grid } from '@material-ui/core'
 
 import CardWrapper from 'parts/CardWrapper'
+import { useBlock } from 'contexts/block-context'
 
 const useStyles = makeStyles(theme => ({
   value: {
@@ -15,23 +16,24 @@ const useStyles = makeStyles(theme => ({
 
 const RewardInfo = () => {
   const classes = useStyles();
+  const { forgeAPY, nodeFee } = useBlock();
 
   return (
     <CardWrapper>
       <Grid container spacing={1}>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Typography className={classes.value}>
             DEX Volume = 2, 394.39 JUP
           </Typography>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <Typography className={classes.value}>
-            $Forge APY = 23.4%
+            $Forge APY = {forgeAPY.toFixed(5) * 100}%
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography className={classes.value}>
-            Node Rewards = 56 JUP
+            Node Rewards = {nodeFee.toFixed(3)} JUP
           </Typography>
         </Grid>
       </Grid>

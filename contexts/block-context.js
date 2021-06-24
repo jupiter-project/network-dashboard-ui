@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import * as jupiterAPI from 'services/api-jupiter'
 
@@ -9,6 +9,9 @@ export function BlockProvider({ children }) {
   const [blockStatus, setBlockStatus] = useState({})
   const [generatorsInfo, setGeneratorsInfo] = useState([])
   const [unconfirmedTransactions, setUnconfirmedTransactions] = useState([])
+  const [nodeFee, setNodeFee] = useState(0)
+
+  const forgeAPY = useMemo(() => 5000000 / (1000000000 - 909000000), []);
 
   useEffect(() => {
     getInit();
@@ -24,16 +27,21 @@ export function BlockProvider({ children }) {
       const [
         blockStatus,
         generatorsInfo,
-        unconfirmedTransactions
+        unconfirmedTransactions,
+        forgeAsset
       ] = await Promise.all([
         jupiterAPI.getBlockchainStatus(),
         jupiterAPI.getNextBlockGenerators(),
-        jupiterAPI.getUnconfirmedTransactions()
+        jupiterAPI.getUnconfirmedTransactions(),
+        jupiterAPI.getForgeAsset()
       ])
+
+      const { accountAssets } = forgeAsset;
+      const nodeFee = (8760000 / accountAssets[0].quantityQNT) * 100
       setBlockStatus(blockStatus)
       setGeneratorsInfo(generatorsInfo)
-      console.log(unconfirmedTransactions)
       setUnconfirmedTransactions(unconfirmedTransactions?.unconfirmedTransactions || [])
+      setNodeFee(nodeFee)
     } catch (error) {
       console.log('[Error] getInit => ', error)
     }
@@ -44,7 +52,9 @@ export function BlockProvider({ children }) {
       value={{
         blockStatus,
         generatorsInfo,
-        unconfirmedTransactions
+        unconfirmedTransactions,
+        forgeAPY,
+        nodeFee
       }}
     >
       {children}
@@ -57,6 +67,8 @@ export function useBlock() {
   if (!context) { throw new Error('Missing stats context') }
 
   const {
+    forgeAPY,
+    nodeFee,
     blockStatus,
     generatorsInfo,
     unconfirmedTransactions
@@ -65,6 +77,8 @@ export function useBlock() {
   return {
     blockStatus,
     generatorsInfo,
-    unconfirmedTransactions
+    unconfirmedTransactions,
+    forgeAPY,
+    nodeFee
   }
 }

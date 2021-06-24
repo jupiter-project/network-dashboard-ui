@@ -1,5 +1,5 @@
 
-import { memo, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -25,6 +25,14 @@ const Home = () => {
 
   const [selectedBlock, setSelectedBlock] = useState({})
   const [selectedTransaction, setSelectedTransaction] = useState({})
+
+  const blockRef = useRef();
+
+  useEffect(() => {
+    if (!isEmpty(selectedBlock)) {
+      window.scrollTo({ behavior: 'smooth', top: blockRef.current.offsetTop })
+    }
+  }, [selectedBlock])
 
   return (
     <main className={classes.root}>
@@ -52,7 +60,7 @@ const Home = () => {
               </Grid>
             }
             {!isEmpty(selectedBlock) &&
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} ref={blockRef}>
                 <BlockDetail selectedBlock={selectedBlock} />
               </Grid>
             }

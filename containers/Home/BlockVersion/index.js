@@ -31,7 +31,7 @@ const BlockVersion = () => {
         </Grid>
         <Grid item xs={12}>
           <Typography variant='body1' color='textSecondary'>
-            Total Blocks
+            Block Height
           </Typography>
           <Typography className={classes.value}>
             {blockStatus.numberOfBlocks?.toLocaleString()}

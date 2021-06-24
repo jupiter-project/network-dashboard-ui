@@ -37,11 +37,16 @@ const getAccount = async (account) => {
   return await apiAxios.get(`/nxt?requestType=getAccount&account=${account}`)
 }
 
+const getForgeAsset = async () => {
+  return await apiAxios.get(`/nxt?requestType=getAssetAccounts&asset=15210174725739850610&firstIndex=${0}&lastIndex=${0}`)
+}
+
 export {
   getAccount,
   getBlock,
   getBlocks,
   getBlockchainStatus,
   getNextBlockGenerators,
-  getUnconfirmedTransactions
+  getUnconfirmedTransactions,
+  getForgeAsset
 };

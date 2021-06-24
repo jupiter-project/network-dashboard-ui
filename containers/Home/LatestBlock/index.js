@@ -24,7 +24,7 @@ const LatestBlock = () => {
       <Grid container spacing={1}>
         <Grid item xs={12}>
           <Typography variant='body1' color='textSecondary'>
-            Latest Block Number
+            Block Hash
           </Typography>
           <Typography className={classes.value}>
             {blockStatus.lastBlock}
