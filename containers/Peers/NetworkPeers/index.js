@@ -27,7 +27,6 @@ const columns = [
   { id: 'announcedAddress', label: 'Announced', minWidth: 120 },
   { id: 'ip', label: 'IP', minWidth: 120 },
   { id: 'platform', label: 'Platform', minWidth: 120 },
-  { id: 'weight', label: 'Weight', minWidth: 120 },
   { id: 'application', label: 'Application', minWidth: 120 },
   { id: 'version', label: 'Version', minWidth: 120 },
   { id: 'updated', label: 'Updated', minWidth: 120 },
@@ -70,9 +69,6 @@ const NetworkPeers = () => {
               </TableCell>
               <TableCell>
                 {peer.platform}
-              </TableCell>
-              <TableCell>
-                {peer.weight}
               </TableCell>
               <TableCell>
                 {peer.application}
