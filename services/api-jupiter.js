@@ -57,6 +57,10 @@ const getAliases = async (account) => {
   return await apiAxios.get(`/nxt?requestType=getAliases&account=${account}`)
 }
 
+const getPeers = async () => {
+  return await apiAxios.get(`/nxt?requestType=getPeers&includePeerInfo=true`)
+}
+
 export {
   getAccount,
   getBlock,
@@ -68,5 +72,6 @@ export {
   getBlockchainTransactions,
   getAccountAssets,
   getAccountCurrencies,
-  getAliases
+  getAliases,
+  getPeers
 };

@@ -76,7 +76,7 @@ const TransactionHistory = ({
                 {getDateFromTimestamp(transaction.timestamp)}
               </TableCell>
               <TableCell>
-                {transaction.sender}
+                {transaction.senderRS}
               </TableCell>
               <TableCell>
                 {getMainType(transaction.type)}
