@@ -58,7 +58,7 @@ const getAliases = async (account) => {
 }
 
 const getPeers = async () => {
-  return await apiAxios.get(`/nxt?requestType=getPeers&includePeerInfo=true`)
+  return await apiAxios.get(`/nxt?requestType=getPeers&includePeerInfo=true&active=true`)
 }
 
 export {
