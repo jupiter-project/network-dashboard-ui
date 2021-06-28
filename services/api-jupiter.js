@@ -61,6 +61,14 @@ const getPeers = async () => {
   return await apiAxios.get(`/nxt?requestType=getPeers&includePeerInfo=true&active=true`)
 }
 
+const getTransaction = async (transaction) => {
+  return await apiAxios.get(`/nxt?requestType=getTransaction&transaction=${transaction}&includePhasingResult=true`)
+}
+
+const getAllWaitingTransactions = async () => {
+  return await apiAxios.get(`/nxt?requestType=getAllWaitingTransactions`)
+}
+
 export {
   getAccount,
   getBlock,
@@ -73,5 +81,7 @@ export {
   getAccountAssets,
   getAccountCurrencies,
   getAliases,
-  getPeers
+  getPeers,
+  getTransaction,
+  getAllWaitingTransactions
 };

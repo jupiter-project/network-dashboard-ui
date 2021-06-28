@@ -29,9 +29,11 @@ const ValueItem = ({
 
   return (
     <div className={classes.item}>
-      <Typography className={classes.label}>
-        {label}:
-      </Typography>
+      <div>
+        <Typography className={classes.label}>
+          {label}:
+        </Typography>
+      </div>
       <Typography className={classes.value}>
         {value}
       </Typography>
