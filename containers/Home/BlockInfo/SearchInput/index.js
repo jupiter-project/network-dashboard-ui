@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
     width: '100%',
+    color: theme.palette.text.secondary,
     backgroundColor: theme.palette.background.default,
     '& input': {
       padding: theme.spacing(2),
