@@ -69,6 +69,10 @@ const getAllWaitingTransactions = async () => {
   return await apiAxios.get(`/nxt?requestType=getAllWaitingTransactions`)
 }
 
+const searchAllOpenAskOrders = async () => {
+  return await apiAxios.get(`/nxt?requestType=searchAllOpenAskOrders&query=nftleda`)
+}
+
 export {
   getAccount,
   getBlock,
@@ -83,5 +87,6 @@ export {
   getAliases,
   getPeers,
   getTransaction,
-  getAllWaitingTransactions
+  getAllWaitingTransactions,
+  searchAllOpenAskOrders
 };

@@ -12,6 +12,10 @@ const LINKS = Object.freeze({
     TITLE: 'Peers',
     HREF: '/peers'
   },
+  NFTS: {
+    TITLE: 'NFTs',
+    HREF: '/nfts'
+  },
   ACCOUNT: {
     TITLE: 'Account',
     HREF: '/account/[account]'
