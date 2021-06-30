@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 import * as jupiterAPI from 'services/api-jupiter'
+import * as dashboardAPI from 'services/api-dashboard'
 
 const BlockContext = createContext(null)
 const INTERVAL_MS = 30000
@@ -8,6 +9,7 @@ const INTERVAL_MS = 30000
 export function BlockProvider({ children }) {
   const [blockStatus, setBlockStatus] = useState({})
   const [generatorsInfo, setGeneratorsInfo] = useState([])
+  const [blockInfo, setBlockInfo] = useState([])
   const [unconfirmedTransactions, setUnconfirmedTransactions] = useState([])
   const [nodeFee, setNodeFee] = useState(0)
 
@@ -28,12 +30,14 @@ export function BlockProvider({ children }) {
         blockStatus,
         generatorsInfo,
         unconfirmedTransactions,
-        forgeAsset
+        forgeAsset,
+        blockInfo
       ] = await Promise.all([
         jupiterAPI.getBlockchainStatus(),
         jupiterAPI.getNextBlockGenerators(),
         jupiterAPI.getUnconfirmedTransactions(),
-        jupiterAPI.getForgeAsset()
+        jupiterAPI.getForgeAsset(),
+        dashboardAPI.getDashboard()
       ])
 
       const { accountAssets } = forgeAsset;
@@ -42,6 +46,7 @@ export function BlockProvider({ children }) {
       setGeneratorsInfo(generatorsInfo)
       setUnconfirmedTransactions(unconfirmedTransactions?.unconfirmedTransactions || [])
       setNodeFee(nodeFee)
+      setBlockInfo(blockInfo)
     } catch (error) {
       console.log('[Error] getInit => ', error)
     }
@@ -54,7 +59,8 @@ export function BlockProvider({ children }) {
         generatorsInfo,
         unconfirmedTransactions,
         forgeAPY,
-        nodeFee
+        nodeFee,
+        blockInfo
       }}
     >
       {children}
@@ -67,6 +73,7 @@ export function useBlock() {
   if (!context) { throw new Error('Missing stats context') }
 
   const {
+    blockInfo,
     forgeAPY,
     nodeFee,
     blockStatus,
@@ -75,6 +82,7 @@ export function useBlock() {
   } = context
 
   return {
+    blockInfo,
     blockStatus,
     generatorsInfo,
     unconfirmedTransactions,

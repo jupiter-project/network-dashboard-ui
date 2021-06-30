@@ -3,8 +3,10 @@ import { memo } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Grid } from '@material-ui/core'
 
+import { useBlock } from 'contexts/block-context'
 import CardWrapper from 'parts/CardWrapper'
 import SearchInput from './SearchInput'
+import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles(theme => ({
   value: {
@@ -16,6 +18,7 @@ const useStyles = makeStyles(theme => ({
 
 const BlockInfo = () => {
   const classes = useStyles();
+  const { blockInfo } = useBlock();
 
   return (
     <CardWrapper>
@@ -25,7 +28,7 @@ const BlockInfo = () => {
             TX per Block Avg
           </Typography>
           <Typography className={classes.value}>
-            4.5
+            {(blockInfo?.txsPerBlock || 0).toFixed(3)}
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -33,7 +36,7 @@ const BlockInfo = () => {
             Fee per Block Avg
           </Typography>
           <Typography className={classes.value}>
-            22.3
+            {((blockInfo?.feePerBlock || 0) / NQT_WEIGHT).toFixed(3)} JUP
           </Typography>
         </Grid>
         <Grid item xs={12}>
@@ -41,7 +44,7 @@ const BlockInfo = () => {
             Block generation Time
           </Typography>
           <Typography className={classes.value}>
-            230s
+            {(blockInfo?.blockGenerationTime || 0).toFixed(3)}s
           </Typography>
         </Grid>
         <Grid item xs={12}>
