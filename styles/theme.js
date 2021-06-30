@@ -63,7 +63,7 @@ const theme = responsiveFontSizes(createMuiTheme({
     },
     text: {
       primary: '#ffffff',
-      secondary: '#415258'
+      secondary: '#ffffff'
     },
   },
   custom: {
