@@ -1,5 +1,5 @@
 
-import { memo } from 'react'
+import { memo, useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -7,7 +7,7 @@ import {
   TableRow
 } from '@material-ui/core'
 
-import { useBlock } from 'contexts/block-context'
+import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
@@ -33,7 +33,19 @@ const NextBlockGenerators = ({
   setSelectedGenerator
 }) => {
   const classes = useStyles();
-  const { generatorsInfo: { generators = [] } } = useBlock();
+  const [generators, setGenerators] = useState([])
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const { generators = [] } = await jupiterAPI.getNextBlockGenerators();
+        setGenerators(generators)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    load()
+  }, []);
 
   const generatorHandler = (generator) => () => {
     setSelectedGenerator(generator)

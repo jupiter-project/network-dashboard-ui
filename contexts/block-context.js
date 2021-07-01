@@ -8,7 +8,6 @@ const INTERVAL_MS = 30000
 
 export function BlockProvider({ children }) {
   const [blockStatus, setBlockStatus] = useState({})
-  const [generatorsInfo, setGeneratorsInfo] = useState([])
   const [blockInfo, setBlockInfo] = useState([])
   const [unconfirmedTransactions, setUnconfirmedTransactions] = useState([])
   const [nodeFee, setNodeFee] = useState(0)
@@ -28,13 +27,11 @@ export function BlockProvider({ children }) {
     try {
       const [
         blockStatus,
-        generatorsInfo,
         unconfirmedTransactions,
         forgeAsset,
         blockInfo
       ] = await Promise.all([
         jupiterAPI.getBlockchainStatus(),
-        jupiterAPI.getNextBlockGenerators(),
         jupiterAPI.getUnconfirmedTransactions(),
         jupiterAPI.getForgeAsset(),
         dashboardAPI.getDashboard()
@@ -43,7 +40,6 @@ export function BlockProvider({ children }) {
       const { accountAssets } = forgeAsset;
       const nodeFee = (8760000 / accountAssets[0].quantityQNT) * 100
       setBlockStatus(blockStatus)
-      setGeneratorsInfo(generatorsInfo)
       setUnconfirmedTransactions(unconfirmedTransactions?.unconfirmedTransactions || [])
       setNodeFee(nodeFee)
       setBlockInfo(blockInfo)
@@ -56,7 +52,6 @@ export function BlockProvider({ children }) {
     <BlockContext.Provider
       value={{
         blockStatus,
-        generatorsInfo,
         unconfirmedTransactions,
         forgeAPY,
         nodeFee,
@@ -73,20 +68,18 @@ export function useBlock() {
   if (!context) { throw new Error('Missing stats context') }
 
   const {
-    blockInfo,
+    blockStatus,
+    unconfirmedTransactions,
     forgeAPY,
     nodeFee,
-    blockStatus,
-    generatorsInfo,
-    unconfirmedTransactions
+    blockInfo
   } = context
 
   return {
-    blockInfo,
     blockStatus,
-    generatorsInfo,
     unconfirmedTransactions,
     forgeAPY,
-    nodeFee
+    nodeFee,
+    blockInfo
   }
 }
