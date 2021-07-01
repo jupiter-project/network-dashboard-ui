@@ -28,12 +28,12 @@ const RewardInfo = () => {
         </Grid> */}
         <Grid item xs={12}>
           <Typography className={classes.value}>
-            $Forge APY = {forgeAPY.toFixed(5) * 100}%
+            $FORGE APY = {forgeAPY.toFixed(5) * 100}%
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <Typography className={classes.value}>
-            Node Rewards = {nodeFee.toFixed(6)} JUP
+            NODE REWARDS = {nodeFee.toFixed(6)} JUP
           </Typography>
         </Grid>
       </Grid>
