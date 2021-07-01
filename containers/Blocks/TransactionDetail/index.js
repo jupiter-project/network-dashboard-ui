@@ -4,14 +4,19 @@ import { memo } from 'react'
 import CardWrapper from 'parts/CardWrapper'
 import ValueItem from 'parts/ValueItem'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
+import getMainType from 'utils/helpers/types/getMainType'
 import { NQT_WEIGHT } from 'utils/constants/common'
+import LINKS from 'utils/constants/links'
 
 const TransactionDetail = ({
   transaction
 }) => {
 
   return (
-    <CardWrapper title={`Transaction: ${transaction.transaction}`}>
+    <CardWrapper
+      title={`Transaction: ${transaction.transaction}`}
+      link={LINKS.TRANSACTION.HREF.replace('[transaction]', transaction.transaction)}
+    >
       <ValueItem
         label='Timestamp'
         value={getDateFromTimestamp(transaction.timestamp)}
@@ -34,7 +39,7 @@ const TransactionDetail = ({
       />
       <ValueItem
         label='Type'
-        value={transaction.type}
+        value={getMainType(transaction.type)}
       />
     </CardWrapper>
   )

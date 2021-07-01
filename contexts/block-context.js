@@ -12,7 +12,7 @@ export function BlockProvider({ children }) {
   const [unconfirmedTransactions, setUnconfirmedTransactions] = useState([])
   const [nodeFee, setNodeFee] = useState(0)
 
-  const forgeAPY = useMemo(() => 5000000 / (1000000000 - 909000000), []);
+  const forgeAPY = useMemo(() => 8760000 / 92379848, []);
 
   useEffect(() => {
     getInit();
@@ -37,6 +37,7 @@ export function BlockProvider({ children }) {
         dashboardAPI.getDashboard()
       ])
 
+      console.log(forgeAsset)
       const { accountAssets } = forgeAsset;
       const nodeFee = (8760000 / accountAssets[0].quantityQNT) * 100
       setBlockStatus(blockStatus)

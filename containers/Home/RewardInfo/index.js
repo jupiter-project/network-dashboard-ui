@@ -33,7 +33,7 @@ const RewardInfo = () => {
         </Grid>
         <Grid item xs={12}>
           <Typography className={classes.value}>
-            Node Rewards = {nodeFee.toFixed(3)} JUP
+            Node Rewards = {nodeFee.toFixed(6)} JUP
           </Typography>
         </Grid>
       </Grid>

@@ -3,6 +3,7 @@ import LINKS from 'utils/constants/links'
 
 const TOP_BAR_MENU = [
   LINKS.GENERATORS,
+  LINKS.BLOCKS,
   LINKS.NFTS,
   LINKS.PEERS,
 ]

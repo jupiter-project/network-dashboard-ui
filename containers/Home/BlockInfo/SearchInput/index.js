@@ -1,9 +1,14 @@
 
 import { memo, useState, useCallback } from 'react'
+import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import { OutlinedInput, Button } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import SearchIcon from '@material-ui/icons/Search'
+
+import * as jupiterAPI from 'services/api-jupiter'
+import LINKS from 'utils/constants/links'
+import usePopUp from 'utils/hooks/usePopUp'
 
 const useStyles = makeStyles((theme) => ({
   searchContainer: {
@@ -56,11 +61,60 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchInput = () => {
   const classes = useStyles();
+  const router = useRouter();
+  const { setPopUp } = usePopUp()
   const [query, setQuery] = useState('');
 
-  const searchHandler = useCallback(() => {
-    console.log(query)
-  }, [query]);
+  const searchHandler = useCallback(async () => {
+    try {
+      // check account
+      let response = await jupiterAPI.getAccount(query);
+      console.log('response => ', response)
+      if (!response?.errorCode) {
+        router.push(
+          LINKS.ACCOUNT.HREF,
+          LINKS.ACCOUNT.HREF.replace('[account]', response.account)
+        )
+        return;
+      }
+
+      // check asset
+      response = await jupiterAPI.getAsset(query);
+      if (!response?.errorCode) {
+        router.push(
+          LINKS.ACCOUNT.HREF,
+          LINKS.ACCOUNT.HREF.replace('[account]', response.account)
+        )
+        return;
+      }
+
+      // check alias
+      response = await jupiterAPI.getAlias(query);
+      if (!response?.errorCode) {
+        router.push(
+          LINKS.ACCOUNT.HREF,
+          LINKS.ACCOUNT.HREF.replace('[account]', response.account)
+        )
+        return;
+      }
+
+      // check transaction
+      response = await jupiterAPI.getTransaction(query);
+      if (!response?.errorCode) {
+        router.push(
+          LINKS.TRANSACTION.HREF,
+          LINKS.TRANSACTION.HREF.replace('[transaction]', response.transaction)
+        )
+        return;
+      }
+
+      setPopUp({
+        text: 'There is no this kind of Data.'
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }, [query, router, setPopUp]);
 
   const closeHandler = useCallback(() => {
     setQuery('')
