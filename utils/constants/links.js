@@ -8,6 +8,10 @@ const LINKS = Object.freeze({
     TITLE: 'Blocks',
     HREF: '/blocks'
   },
+  ASSETS: {
+    TITLE: 'Assets',
+    HREF: '/assets'
+  },
   GENERATORS: {
     TITLE: 'Generators',
     HREF: '/generators'

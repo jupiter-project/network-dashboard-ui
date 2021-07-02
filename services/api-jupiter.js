@@ -61,6 +61,10 @@ const getAlias = async (alias) => {
   return await apiAxios.get(`/nxt?requestType=getAlias&alias=${alias}`)
 }
 
+const getAllAssets = async () => {
+  return await apiAxios.get(`/nxt?requestType=getAllAssets&includeCounts=true`)
+}
+
 const getAsset = async (asset) => {
   return await apiAxios.get(`/nxt?requestType=getAsset&asset=${asset}`)
 }
@@ -81,6 +85,22 @@ const searchAllOpenAskOrders = async () => {
   return await apiAxios.get(`/nxt?requestType=searchAllOpenAskOrders&query=nftleda`)
 }
 
+const getAskOrders = async (asset) => {
+  return await apiAxios.get(`/nxt?requestType=getAskOrders&asset=${asset}&includeNTFInfo=true`)
+}
+
+const getBidOrders = async (asset) => {
+  return await apiAxios.get(`/nxt?requestType=getBidOrders&asset=${asset}&includeNTFInfo=true`)
+}
+
+const getLastTrades = async (asset) => {
+  return await apiAxios.get(`/nxt?requestType=getLastTrades&assets=${asset}`)
+}
+
+const getAssetAccounts = async (asset) => {
+  return await apiAxios.get(`/nxt?requestType=getAssetAccounts&asset=${asset}`)
+}
+
 export {
   getAccount,
   getBlock,
@@ -94,9 +114,14 @@ export {
   getAccountCurrencies,
   getAliases,
   getAlias,
+  getAllAssets,
   getAsset,
   getPeers,
   getTransaction,
   getAllWaitingTransactions,
-  searchAllOpenAskOrders
+  searchAllOpenAskOrders,
+  getAskOrders,
+  getBidOrders,
+  getLastTrades,
+  getAssetAccounts
 };
