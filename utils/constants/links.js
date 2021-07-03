@@ -28,6 +28,10 @@ const LINKS = Object.freeze({
     TITLE: 'Account',
     HREF: '/account/[account]'
   },
+  ASSET: {
+    TITLE: 'Asset',
+    HREF: '/asset/[asset]'
+  },
   TRANSACTION: {
     TITLE: 'Transaction',
     HREF: '/transaction/[transaction]'

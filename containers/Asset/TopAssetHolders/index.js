@@ -10,53 +10,56 @@ import {
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
-import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
+import AccountItem from 'parts/AccountItem'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
     overflowX: 'overlay'
   },
-  block: {
+  accountAsset: {
     color: theme.custom.palette.green,
     cursor: 'pointer'
   }
 }));
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 90 },
-  { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
+  { id: 'account', label: 'Account', minWidth: 120 },
+  { id: 'quantity', label: 'Quantity', minWidth: 120 },
 ];
 
-const AccountAliases = ({
-  account
+const TopAssetHolders = ({
+  selectedAsset
 }) => {
   const classes = useStyles();
 
-  const [aliases, setAliases] = useState([])
+  const [accountAssets, setBidOrders] = useState([])
 
   useEffect(() => {
     const load = async () => {
       try {
-        const { aliases = [] } = await jupiterAPI.getAliases(account);
-        setAliases(aliases)
+        const { accountAssets = [] } = await jupiterAPI.getAssetAccounts(selectedAsset.asset);
+        setBidOrders(accountAssets)
       } catch (error) {
         console.log(error)
       }
     }
     load()
-  }, [account])
+  }, [selectedAsset])
 
   return (
-    <CardWrapper title='Aliases'>
+    <CardWrapper title='Top Asset Holders'>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
-          {aliases.map((alias) => (
-            <TableRow key={alias.alias}>
-              <TableCell component='th' scope='row' className={classes.block}>
-                {alias.aliasName}
+          {accountAssets.map((accountAsset, index) => (
+            <TableRow key={index}>
+              <TableCell component='th' scope='row'>
+                <AccountItem
+                  account={accountAsset.account}
+                  accountRS={accountAsset.accountRS}
+                />
               </TableCell>
               <TableCell>
-                {getDateFromTimestamp(alias.timestamp)}
+                {accountAsset.quantityQNT}
               </TableCell>
             </TableRow>
           ))}
@@ -66,4 +69,4 @@ const AccountAliases = ({
   )
 }
 
-export default memo(AccountAliases)
+export default memo(TopAssetHolders)

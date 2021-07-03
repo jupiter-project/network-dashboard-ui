@@ -10,53 +10,57 @@ import {
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
-import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
+import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
     overflowX: 'overlay'
   },
-  block: {
+  bidOrder: {
     color: theme.custom.palette.green,
     cursor: 'pointer'
   }
 }));
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 90 },
-  { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
+  { id: 'order', label: 'Order', minWidth: 120 },
+  { id: 'price', label: 'Price', minWidth: 90 },
+  { id: 'quantity', label: 'Quantity', minWidth: 120 },
 ];
 
-const AccountAliases = ({
-  account
+const BidOrders = ({
+  selectedAsset
 }) => {
   const classes = useStyles();
 
-  const [aliases, setAliases] = useState([])
+  const [bidOrders, setBidOrders] = useState([])
 
   useEffect(() => {
     const load = async () => {
       try {
-        const { aliases = [] } = await jupiterAPI.getAliases(account);
-        setAliases(aliases)
+        const { bidOrders = [] } = await jupiterAPI.getBidOrders(selectedAsset.asset);
+        setBidOrders(bidOrders)
       } catch (error) {
         console.log(error)
       }
     }
     load()
-  }, [account])
+  }, [selectedAsset])
 
   return (
-    <CardWrapper title='Aliases'>
+    <CardWrapper title='Bid Orders'>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
-          {aliases.map((alias) => (
-            <TableRow key={alias.alias}>
-              <TableCell component='th' scope='row' className={classes.block}>
-                {alias.aliasName}
+          {bidOrders.map((bidOrder) => (
+            <TableRow key={bidOrder.order}>
+              <TableCell component='th' scope='row'>
+                {bidOrder.order}
               </TableCell>
               <TableCell>
-                {getDateFromTimestamp(alias.timestamp)}
+                {bidOrder.priceNQT / NQT_WEIGHT} JUP
+              </TableCell>
+              <TableCell>
+                {bidOrder.quantityQNT}
               </TableCell>
             </TableRow>
           ))}
@@ -66,4 +70,4 @@ const AccountAliases = ({
   )
 }
 
-export default memo(AccountAliases)
+export default memo(BidOrders)

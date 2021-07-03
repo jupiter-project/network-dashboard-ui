@@ -57,7 +57,11 @@ const getAliases = async (account) => {
   return await apiAxios.get(`/nxt?requestType=getAliases&account=${account}`)
 }
 
-const getAlias = async (alias) => {
+const getAliasByName = async (alias) => {
+  return await apiAxios.get(`/nxt?requestType=getAlias&aliasName=${alias}`)
+}
+
+const getAliasByID = async (alias) => {
   return await apiAxios.get(`/nxt?requestType=getAlias&alias=${alias}`)
 }
 
@@ -113,7 +117,8 @@ export {
   getAccountAssets,
   getAccountCurrencies,
   getAliases,
-  getAlias,
+  getAliasByName,
+  getAliasByID,
   getAllAssets,
   getAsset,
   getPeers,

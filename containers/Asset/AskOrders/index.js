@@ -10,53 +10,57 @@ import {
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
-import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
+import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
     overflowX: 'overlay'
   },
-  block: {
+  askOrder: {
     color: theme.custom.palette.green,
     cursor: 'pointer'
   }
 }));
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 90 },
-  { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
+  { id: 'order', label: 'Order', minWidth: 120 },
+  { id: 'price', label: 'Price', minWidth: 90 },
+  { id: 'quantity', label: 'Quantity', minWidth: 120 },
 ];
 
-const AccountAliases = ({
-  account
+const AskOrders = ({
+  selectedAsset
 }) => {
   const classes = useStyles();
 
-  const [aliases, setAliases] = useState([])
+  const [askOrders, setAskOrders] = useState([])
 
   useEffect(() => {
     const load = async () => {
       try {
-        const { aliases = [] } = await jupiterAPI.getAliases(account);
-        setAliases(aliases)
+        const { askOrders = [] } = await jupiterAPI.getAskOrders(selectedAsset.asset);
+        setAskOrders(askOrders)
       } catch (error) {
         console.log(error)
       }
     }
     load()
-  }, [account])
+  }, [selectedAsset])
 
   return (
-    <CardWrapper title='Aliases'>
+    <CardWrapper title='Ask Orders'>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
-          {aliases.map((alias) => (
-            <TableRow key={alias.alias}>
-              <TableCell component='th' scope='row' className={classes.block}>
-                {alias.aliasName}
+          {askOrders.map((askOrder) => (
+            <TableRow key={askOrder.order}>
+              <TableCell component='th' scope='row'>
+                {askOrder.order}
               </TableCell>
               <TableCell>
-                {getDateFromTimestamp(alias.timestamp)}
+                {askOrder.priceNQT / NQT_WEIGHT} JUP
+              </TableCell>
+              <TableCell>
+                {askOrder.quantityQNT}
               </TableCell>
             </TableRow>
           ))}
@@ -66,4 +70,4 @@ const AccountAliases = ({
   )
 }
 
-export default memo(AccountAliases)
+export default memo(AskOrders)

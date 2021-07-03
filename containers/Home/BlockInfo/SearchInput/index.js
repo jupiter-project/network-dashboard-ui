@@ -82,14 +82,23 @@ const SearchInput = () => {
       response = await jupiterAPI.getAsset(query);
       if (!response?.errorCode) {
         router.push(
+          LINKS.ASSET.HREF,
+          LINKS.ASSET.HREF.replace('[asset]', response.asset)
+        )
+        return;
+      }
+
+      // check alias
+      response = await jupiterAPI.getAliasByID(query);
+      if (!response?.errorCode) {
+        router.push(
           LINKS.ACCOUNT.HREF,
           LINKS.ACCOUNT.HREF.replace('[account]', response.account)
         )
         return;
       }
 
-      // check alias
-      response = await jupiterAPI.getAlias(query);
+      response = await jupiterAPI.getAliasByName(query);
       if (!response?.errorCode) {
         router.push(
           LINKS.ACCOUNT.HREF,
