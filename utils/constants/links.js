@@ -36,6 +36,10 @@ const LINKS = Object.freeze({
     TITLE: 'Transaction',
     HREF: '/transaction/[transaction]'
   },
+  LEDA_NFT_DETAIL: {
+    TITLE: 'NFT details',
+    HREF: 'https://leda.jup.io/nft-details/[asset]'
+  },
 });
 
 export default LINKS;

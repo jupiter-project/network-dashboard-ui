@@ -1,9 +1,9 @@
 
 import { memo } from 'react'
+import Link from 'next/link'
 import { Card, CardContent, Typography, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import OpenInNewIcon from '@material-ui/icons/OpenInNew'
-import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -36,11 +36,6 @@ const CardWrapper = ({
   children
 }) => {
   const classes = useStyles();
-  const router = useRouter();
-
-  const linkHandler = () => {
-    router.push(link)
-  }
 
   return (
     <Card className={classes.card}>
@@ -52,9 +47,13 @@ const CardWrapper = ({
             </Typography>
           }
           {link &&
-            <IconButton onClick={linkHandler} className={classes.link}>
-              <OpenInNewIcon />
-            </IconButton>
+            <Link href={link}>
+              <a aria-label={link} target='_blank' rel='noreferrer'>
+                <IconButton className={classes.link}>
+                  <OpenInNewIcon />
+                </IconButton>
+              </a>
+            </Link>
           }
         </div>
         {children}

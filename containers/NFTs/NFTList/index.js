@@ -76,7 +76,7 @@ const NFTList = ({
 
             return (
               <TableRow key={order.block} onClick={nftHandler(order)}>
-                <TableCell component='th' scope='row' className={classes.block}>
+                <TableCell component='th' scope='row'>
                   <ProductContent
                     info={info}
                     className={classes.image}

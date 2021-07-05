@@ -37,7 +37,6 @@ export function BlockProvider({ children }) {
         dashboardAPI.getDashboard()
       ])
 
-      console.log(forgeAsset)
       const { accountAssets } = forgeAsset;
       const nodeFee = (8760000 / accountAssets[0].quantityQNT) * 100
       setBlockStatus(blockStatus)

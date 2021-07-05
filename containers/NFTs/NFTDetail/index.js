@@ -7,6 +7,7 @@ import ValueItem from 'parts/ValueItem'
 import ProductContent from 'parts/ProductContent'
 import getJSONParse from 'utils/helpers/getJSONParse'
 import { NQT_WEIGHT } from 'utils/constants/common'
+import LINKS from 'utils/constants/links'
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -25,7 +26,10 @@ const NFTDetail = ({
   const info = useMemo(() => getJSONParse(item?.message), [item]);
 
   return (
-    <CardWrapper title={`NFT: ${item.description}`}>
+    <CardWrapper
+      title={`NFT: ${item.description}`}
+      link={LINKS.LEDA_NFT_DETAIL.HREF.replace('[asset]', item.asset)}
+    >
       <ProductContent
         info={info}
         className={classes.image}
