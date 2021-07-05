@@ -1,5 +1,6 @@
 
-import { memo, useState, useEffect } from 'react'
+import { memo, useState, useEffect, useCallback } from 'react'
+import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -15,6 +16,7 @@ import AccountItem from 'parts/AccountItem'
 import { useBlock } from 'contexts/block-context'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 import { NQT_WEIGHT } from 'utils/constants/common'
+import LINKS from 'utils/constants/links'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ROWS_PER_PAGE = 8;
+const INTERVAL_MS = 30000;
 const columns = [
   { id: 'height', label: 'Height', minWidth: 90 },
   { id: 'age', label: 'Age', minWidth: 120 },
@@ -35,33 +38,45 @@ const columns = [
   { id: 'generatorRS', label: 'Generator', minWidth: 140 },
 ];
 
-const BlockHistory = ({
-  setSelectedBlock
-}) => {
+const BlockHistory = () => {
   const classes = useStyles();
+  const router = useRouter();
   const { blockStatus } = useBlock();
 
   const [blocks, setBlocks] = useState([])
   const [page, setPage] = useState(0)
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const params = {
-          firstIndex: page * ROWS_PER_PAGE,
-          lastIndex: (page + 1) * ROWS_PER_PAGE
-        }
-        const { blocks = [] } = await jupiterAPI.getBlocks(params);
-        setBlocks(blocks)
-      } catch (error) {
-        console.log(error)
+  const getData = useCallback(async () => {
+    try {
+      const params = {
+        firstIndex: page * ROWS_PER_PAGE,
+        lastIndex: (page + 1) * ROWS_PER_PAGE
       }
+      const { blocks = [] } = await jupiterAPI.getBlocks(params);
+      setBlocks(blocks)
+    } catch (error) {
+      console.log(error)
     }
-    load()
-  }, [page])
+  }, [page, setBlocks])
+
+  useEffect(() => {
+    getData();
+    const interval = setInterval(() => {
+      getData();
+    }, INTERVAL_MS);
+
+    return () => clearInterval(interval);
+  }, [getData]);
+
+  useEffect(() => {
+    getData()
+  }, [page, getData])
 
   const blockHandler = (block) => () => {
-    setSelectedBlock(block)
+    router.push(
+      LINKS.BLOCK.HREF,
+      LINKS.BLOCK.HREF.replace('[block]', block.block)
+    )
   }
 
   return (
