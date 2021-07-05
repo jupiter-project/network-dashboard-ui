@@ -9,6 +9,7 @@ import {
 
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
+import TablePagination from 'parts/Table/TablePagination'
 import CardWrapper from 'parts/CardWrapper'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const ROWS_PER_PAGE = 14;
 const columns = [
   { id: 'id', label: 'ID', minWidth: 90 },
   { id: 'announcedAddress', label: 'Announced', minWidth: 120 },
@@ -36,6 +38,7 @@ const NetworkPeers = () => {
   const classes = useStyles();
 
   const [peers, setPeers] = useState([])
+  const [page, setPage] = useState(0)
 
   useEffect(() => {
     const load = async () => {
@@ -53,7 +56,10 @@ const NetworkPeers = () => {
     <CardWrapper title={`Peers: ${peers.length}`}>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
-          {peers.map((peer, index) => (
+          {peers.slice(
+            page * ROWS_PER_PAGE,
+            page * ROWS_PER_PAGE + ROWS_PER_PAGE
+          ).map((peer, index) => (
             <TableRow key={index}>
               <TableCell
                 component='th'
@@ -83,6 +89,12 @@ const NetworkPeers = () => {
           ))}
         </TableContainer>
       </Box>
+      <TablePagination
+        page={page}
+        setPage={setPage}
+        total={peers.length}
+        rowsPerPage={ROWS_PER_PAGE}
+      />
     </CardWrapper>
   )
 }

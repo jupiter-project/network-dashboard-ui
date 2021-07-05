@@ -6,10 +6,10 @@ import {
   TableCell,
   TableRow
 } from '@material-ui/core'
-import { Pagination } from '@material-ui/lab'
 
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
+import TablePagination from 'parts/Table/TablePagination'
 import CardWrapper from 'parts/CardWrapper'
 import AccountItem from 'parts/AccountItem'
 import ProductContent from 'parts/ProductContent'
@@ -102,12 +102,11 @@ const NFTList = ({
           })}
         </TableContainer>
       </Box>
-      <Pagination
-        variant='outlined'
-        shape='rounded'
-        page={page + 1}
-        count={Math.ceil(openOrders.length / ROWS_PER_PAGE)}
-        onChange={(event, page) => setPage(page - 1)}
+      <TablePagination
+        page={page}
+        setPage={setPage}
+        total={openOrders.length}
+        rowsPerPage={ROWS_PER_PAGE}
       />
     </CardWrapper>
   )
