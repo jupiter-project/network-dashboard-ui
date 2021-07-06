@@ -28,6 +28,7 @@ const TransactionDetail = ({
       <ValueItem
         label='Block ID'
         value={transaction.block}
+        link={LINKS.BLOCK.HREF.replace('[block]', transaction.block)}
       />
       <ValueItem
         label='Amt + Fee'
@@ -36,6 +37,7 @@ const TransactionDetail = ({
       <ValueItem
         label='Sender'
         value={transaction.senderRS}
+        link={LINKS.ACCOUNT.HREF.replace('[account]', transaction.sender)}
       />
       <ValueItem
         label='Type'

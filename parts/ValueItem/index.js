@@ -2,6 +2,8 @@
 import { memo } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
+import { useRouter } from 'next/router';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
   item: {
@@ -18,14 +20,23 @@ const useStyles = makeStyles(theme => ({
     fontSize: 18,
     color: theme.custom.palette.blue,
     wordBreak: 'break-word'
+  },
+  cursor: {
+    cursor: 'pointer',
   }
 }));
 
 const ValueItem = ({
   label,
-  value
+  value,
+  link = ''
 }) => {
   const classes = useStyles();
+  const router = useRouter();
+
+  const linkHandler = () => {
+    if (link) router.push(link)
+  }
 
   return (
     <div className={classes.item}>
@@ -34,7 +45,7 @@ const ValueItem = ({
           {label}:
         </Typography>
       </div>
-      <Typography className={classes.value}>
+      <Typography className={clsx(classes.value, { [classes.cursor]: !!link })} onClick={linkHandler}>
         {value}
       </Typography>
     </div>

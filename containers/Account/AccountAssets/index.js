@@ -1,5 +1,6 @@
 
 import { memo, useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -10,6 +11,7 @@ import {
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
+import LINKS from 'utils/constants/links'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -31,6 +33,7 @@ const AccountAssets = ({
   account
 }) => {
   const classes = useStyles();
+  const router = useRouter();
 
   const [assets, setAssets] = useState([])
 
@@ -46,13 +49,20 @@ const AccountAssets = ({
     load()
   }, [account])
 
+  const assetHandler = (asset) => () => {
+    router.push(
+      LINKS.ASSET.HREF,
+      LINKS.ASSET.HREF.replace('[asset]', asset.asset)
+    )
+  }
+
   return (
     <CardWrapper title='Assets'>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns}>
           {assets.map((asset) => (
             <TableRow key={asset.asset}>
-              <TableCell component='th' scope='row' className={classes.block}>
+              <TableCell component='th' scope='row' className={classes.block} onClick={assetHandler(asset)}>
                 {asset.asset}
               </TableCell>
               <TableCell>

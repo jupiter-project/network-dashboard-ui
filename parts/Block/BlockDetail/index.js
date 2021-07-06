@@ -5,6 +5,7 @@ import CardWrapper from 'parts/CardWrapper'
 import ValueItem from 'parts/ValueItem'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 import { NQT_WEIGHT } from 'utils/constants/common'
+import LINKS from 'utils/constants/links'
 
 const BlockDetail = ({
   selectedBlock
@@ -31,6 +32,7 @@ const BlockDetail = ({
       <ValueItem
         label='Generator'
         value={selectedBlock.generatorRS}
+        link={LINKS.ACCOUNT.HREF.replace('[account]', selectedBlock.generator)}
       />
       <ValueItem
         label='Payload'

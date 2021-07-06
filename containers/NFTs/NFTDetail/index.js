@@ -45,6 +45,7 @@ const NFTDetail = ({
       <ValueItem
         label='Generator'
         value={item.accountRS}
+        link={LINKS.ACCOUNT.HREF.replace('[account]', item.account)}
       />
       <ValueItem
         label='Price'
@@ -53,6 +54,7 @@ const NFTDetail = ({
       <ValueItem
         label='Asset'
         value={item.asset}
+        link={LINKS.ASSET.HREF.replace('[asset]', item.asset)}
       />
     </CardWrapper>
   )
