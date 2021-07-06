@@ -5,11 +5,11 @@ import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import * as jupiterAPI from 'services/api-jupiter'
-import AssetDetail from './AssetDetail'
-import AskOrders from './AskOrders'
-import BidOrders from './BidOrders'
-import LatestTrades from './LatestTrades'
-import TopAssetHolders from './TopAssetHolders'
+import AssetDetail from 'parts/Asset/AssetDetail'
+import AskOrders from 'parts/Asset/AskOrders'
+import BidOrders from 'parts/Asset/BidOrders'
+import LatestTrades from 'parts/Asset/LatestTrades'
+import TopAssetHolders from 'parts/Asset/TopAssetHolders'
 import { isEmpty } from 'utils/helpers/utility'
 
 const useStyles = makeStyles(theme => ({

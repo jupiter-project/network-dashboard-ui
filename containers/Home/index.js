@@ -1,14 +1,16 @@
 
 import { memo } from 'react'
+import { useRouter } from 'next/router'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+import BlockHistory from 'parts/Block/BlockHistory'
 import LatestBlock from './LatestBlock'
 import BlockVersion from './BlockVersion'
 import BlockInfo from './BlockInfo'
 import RewardInfo from './RewardInfo'
 import UnconfirmedTransactions from './UnconfirmedTransactions'
-import BlockHistory from './BlockHistory'
+import LINKS from 'utils/constants/links'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,6 +20,14 @@ const useStyles = makeStyles(theme => ({
 
 const Home = () => {
   const classes = useStyles()
+  const router = useRouter();
+
+  const onBlock = (block) => {
+    router.push(
+      LINKS.BLOCK.HREF,
+      LINKS.BLOCK.HREF.replace('[block]', block.block)
+    )
+  }
 
   return (
     <main className={classes.root}>
@@ -34,7 +44,7 @@ const Home = () => {
               <UnconfirmedTransactions />
             </Grid>
             <Grid item xs={12}>
-              <BlockHistory />
+              <BlockHistory onBlock={onBlock} />
             </Grid>
           </Grid>
         </Grid>

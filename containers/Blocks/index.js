@@ -3,10 +3,10 @@ import { memo, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-import BlockHistory from './BlockHistory'
-import BlockDetail from './BlockDetail'
-import BlockTransactions from './BlockTransactions'
-import TransactionDetail from './TransactionDetail'
+import BlockHistory from 'parts/Block/BlockHistory'
+import BlockDetail from 'parts/Block/BlockDetail'
+import BlockTransactions from 'parts/Block/BlockTransactions'
+import TransactionDetail from 'parts/Block/TransactionDetail'
 import { isEmpty } from 'utils/helpers/utility'
 
 const useStyles = makeStyles(theme => ({
@@ -27,7 +27,7 @@ const Blocks = () => {
         <Grid item xs={12} md={7}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <BlockHistory setSelectedBlock={setSelectedBlock} />
+              <BlockHistory onBlock={setSelectedBlock} />
             </Grid>
             <Grid item xs={12}>
               {!isEmpty(selectedBlock.transactions) &&

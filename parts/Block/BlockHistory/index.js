@@ -1,6 +1,5 @@
 
 import { memo, useState, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/router'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -16,7 +15,6 @@ import AccountItem from 'parts/AccountItem'
 import { useBlock } from 'contexts/block-context'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 import { NQT_WEIGHT } from 'utils/constants/common'
-import LINKS from 'utils/constants/links'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -38,9 +36,10 @@ const columns = [
   { id: 'generatorRS', label: 'Generator', minWidth: 140 },
 ];
 
-const BlockHistory = () => {
+const BlockHistory = ({
+  onBlock
+}) => {
   const classes = useStyles();
-  const router = useRouter();
   const { blockStatus } = useBlock();
 
   const [blocks, setBlocks] = useState([])
@@ -73,10 +72,7 @@ const BlockHistory = () => {
   }, [page, getData])
 
   const blockHandler = (block) => () => {
-    router.push(
-      LINKS.BLOCK.HREF,
-      LINKS.BLOCK.HREF.replace('[block]', block.block)
-    )
+    onBlock(block)
   }
 
   return (
