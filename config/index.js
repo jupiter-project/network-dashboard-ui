@@ -3,7 +3,7 @@ const PROXY_URL = process.env.NODE_ENV === 'production'
   : 'http://localhost:8000'
 
 const JUPITER_URL = 'https://nodes.gojupiter.tech'
-const GEO_LOCATION_URL = 'http://ip-api.com/json'
+const GEO_LOCATION_URL = 'https://freegeoip.app/json'
 
 export {
   PROXY_URL,

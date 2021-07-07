@@ -31,13 +31,13 @@ const PeerMaps = ({
 
       let markers = [];
       for (const peer of peersArray) {
-        const { lat = 0, lon = 0 } = await geoLocationAPI.getGeoLocation(peer.address);
+        const { latitude = 0, longitude = 0 } = await geoLocationAPI.getGeoLocation(peer.address);
         markers = [
           ...markers,
           {
             markerOffset: 15,
             name: peer.platform,
-            coordinates: [lat, lon]
+            coordinates: [longitude, latitude]
           }
         ]
       }
