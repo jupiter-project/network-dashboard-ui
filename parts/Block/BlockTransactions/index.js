@@ -1,5 +1,5 @@
 
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 
 import TableContainer from 'parts/Table/TableContainer'
+import TablePagination from 'parts/Table/TablePagination'
 import CardWrapper from 'parts/CardWrapper'
 import AccountItem from 'parts/AccountItem'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
@@ -24,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const ROWS_PER_PAGE = 12;
 const columns = [
   { id: 'id', label: 'ID', minWidth: 90 },
   { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
@@ -38,6 +40,8 @@ const BlockTransactions = ({
 }) => {
   const classes = useStyles();
 
+  const [page, setPage] = useState(0)
+
   const transactionHandler = (transaction) => () => {
     setSelectedTransaction(transaction)
   }
@@ -46,7 +50,10 @@ const BlockTransactions = ({
     <CardWrapper title='Transactions'>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns} isEmpty={transactions.length === 0}>
-          {transactions.map((transaction) => (
+          {transactions.slice(
+            page * ROWS_PER_PAGE,
+            page * ROWS_PER_PAGE + ROWS_PER_PAGE
+          ).map((transaction) => (
             <TableRow key={transaction.transaction}>
               <TableCell component='th' scope='row' onClick={transactionHandler(transaction)} className={classes.transaction}>
                 {transaction.transaction}
@@ -70,6 +77,12 @@ const BlockTransactions = ({
           ))}
         </TableContainer>
       </Box>
+      <TablePagination
+        page={page}
+        setPage={setPage}
+        total={transactions.length}
+        rowsPerPage={ROWS_PER_PAGE}
+      />
     </CardWrapper>
   )
 }
