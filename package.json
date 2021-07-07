@@ -23,7 +23,9 @@
     "react-hook-form": "^6.14.0",
     "react-lottie": "^1.2.3",
     "react-redux": "^7.2.2",
+    "react-simple-maps": "^2.3.0",
     "react-text-mask": "^5.4.3",
+    "recharts": "^2.0.9",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "yup": "^0.32.8"

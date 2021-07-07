@@ -41,7 +41,7 @@ const theme = responsiveFontSizes(createMuiTheme({
   palette: {
     primary: {
       light: '#4791db',
-      main: '#2B9938',
+      main: '#2774FE',
       dark: '#ecebed',
       contrastText: '#ffffff'
     },

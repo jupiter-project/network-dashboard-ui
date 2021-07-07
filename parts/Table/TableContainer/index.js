@@ -47,7 +47,7 @@ const TableContainer = ({
         {isEmpty ? (
           <TableRow>
             <TableCell colSpan={columns.length} align='center'>
-              <Typography variant='h5'>
+              <Typography variant='h5' color='primary'>
                 No Data
               </Typography>
             </TableCell>

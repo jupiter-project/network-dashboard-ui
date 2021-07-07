@@ -105,6 +105,10 @@ const getAssetAccounts = async (asset) => {
   return await apiAxios.get(`/nxt?requestType=getAssetAccounts&asset=${asset}`)
 }
 
+const searchAllTrades = async (params) => {
+  return await apiAxios.get(`/nxt?requestType=searchAllTrades&query=nftleda&firstIndex=${params.first}&lastIndex=${params.last}`)
+}
+
 export {
   getAccount,
   getBlock,
@@ -128,5 +132,6 @@ export {
   getAskOrders,
   getBidOrders,
   getLastTrades,
-  getAssetAccounts
+  getAssetAccounts,
+  searchAllTrades
 };

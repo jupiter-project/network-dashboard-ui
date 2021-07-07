@@ -3,6 +3,7 @@ import { memo, useState } from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+import TrendingChart from './TrendingChart'
 import NFTList from './NFTList'
 import NFTDetail from './NFTDetail'
 import { isEmpty } from 'utils/helpers/utility'
@@ -20,6 +21,9 @@ const NFTs = () => {
   return (
     <main className={classes.root}>
       <Grid container spacing={4}>
+        <Grid item xs={12}>
+          <TrendingChart />
+        </Grid>
         <Grid item xs={12} md={7}>
           <NFTList setSelectedNFT={setSelectedNFT} />
         </Grid>

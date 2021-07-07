@@ -1,5 +1,5 @@
 
-import { memo, useState, useEffect } from 'react'
+import { memo } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Box,
@@ -7,7 +7,6 @@ import {
   TableRow
 } from '@material-ui/core'
 
-import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import TablePagination from 'parts/Table/TablePagination'
 import CardWrapper from 'parts/CardWrapper'
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const ROWS_PER_PAGE = 14;
 const columns = [
   { id: 'id', label: 'ID', minWidth: 90 },
   { id: 'announcedAddress', label: 'Announced', minWidth: 120 },
@@ -34,31 +32,21 @@ const columns = [
   { id: 'updated', label: 'Updated', minWidth: 120 },
 ];
 
-const NetworkPeers = () => {
+const NetworkPeers = ({
+  page,
+  peers,
+  rowsPerPage,
+  setPage
+}) => {
   const classes = useStyles();
-
-  const [peers, setPeers] = useState([])
-  const [page, setPage] = useState(0)
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const { peers = [] } = await jupiterAPI.getPeers();
-        setPeers(peers)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    load()
-  }, [])
 
   return (
     <CardWrapper title={`Peers: ${peers.length}`}>
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns} isEmpty={peers.length === 0}>
           {peers.slice(
-            page * ROWS_PER_PAGE,
-            page * ROWS_PER_PAGE + ROWS_PER_PAGE
+            page * rowsPerPage,
+            page * rowsPerPage + rowsPerPage
           ).map((peer, index) => (
             <TableRow key={index}>
               <TableCell
@@ -93,7 +81,7 @@ const NetworkPeers = () => {
         page={page}
         setPage={setPage}
         total={peers.length}
-        rowsPerPage={ROWS_PER_PAGE}
+        rowsPerPage={rowsPerPage}
       />
     </CardWrapper>
   )

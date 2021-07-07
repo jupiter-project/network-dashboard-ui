@@ -75,7 +75,7 @@ const NFTList = ({
             const info = getJSONParse(order.message);
 
             return (
-              <TableRow key={order.block} onClick={nftHandler(order)}>
+              <TableRow key={order.order} onClick={nftHandler(order)}>
                 <TableCell component='th' scope='row'>
                   <ProductContent
                     info={info}

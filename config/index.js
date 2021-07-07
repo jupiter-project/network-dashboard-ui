@@ -3,8 +3,10 @@ const PROXY_URL = process.env.NODE_ENV === 'production'
   : 'http://localhost:8000'
 
 const JUPITER_URL = 'https://nodes.gojupiter.tech'
+const GEO_LOCATION_URL = 'http://ip-api.com/json'
 
 export {
   PROXY_URL,
   JUPITER_URL,
+  GEO_LOCATION_URL
 }
