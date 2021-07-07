@@ -49,7 +49,7 @@ const AccountAliases = ({
   return (
     <CardWrapper title='Aliases'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={aliases.length === 0}>
           {aliases.map((alias) => (
             <TableRow key={alias.alias}>
               <TableCell component='th' scope='row' className={classes.block}>

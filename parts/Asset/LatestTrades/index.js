@@ -54,7 +54,7 @@ const LatestTrades = ({
   return (
     <CardWrapper title='Latest Trades'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={trades.length === 0}>
           {trades.map((trade, index) => (
             <TableRow key={index}>
               <TableCell component='th' scope='row'>

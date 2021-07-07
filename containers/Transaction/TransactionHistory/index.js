@@ -50,7 +50,7 @@ const TransactionHistory = () => {
   return (
     <CardWrapper title='Transactions'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={transactions.length === 0}>
           {transactions.map((transaction) => (
             <TableRow key={transaction.transaction}>
               <TableCell component='th' scope='row' >

@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   value: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: theme.custom.palette.blue
+    color: theme.custom.palette.grey
   }
 }));
 
@@ -21,11 +21,6 @@ const RewardInfo = () => {
   return (
     <CardWrapper>
       <Grid container spacing={1}>
-        {/* <Grid item xs={12}>
-          <Typography className={classes.value}>
-            DEX Volume = 2, 394.39 JUP
-          </Typography>
-        </Grid> */}
         <Grid item xs={12}>
           <Typography className={classes.value}>
             $FORGE APY = {forgeAPY.toFixed(5) * 100}%

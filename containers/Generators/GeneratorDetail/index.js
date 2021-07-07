@@ -20,18 +20,18 @@ const GeneratorDetail = ({
   }, [generator])
 
   return (
-    <CardWrapper title={`Account: ${generator.account}`}>
+    <CardWrapper title={`Generator: ${generator.account}`}>
       <ValueItem
         label='Name'
-        value={generatorInfo.name}
+        value={generatorInfo.name || 'No Name'}
       />
       <ValueItem
         label='Balance'
-        value={generatorInfo.balanceNQT / NQT_WEIGHT}
+        value={`${generatorInfo.balanceNQT / NQT_WEIGHT} JUP`}
       />
       <ValueItem
         label='Eff. balance'
-        value={generatorInfo.forgedBalanceNQT / NQT_WEIGHT}
+        value={`${generatorInfo.forgedBalanceNQT / NQT_WEIGHT} JUP`}
       />
       <ValueItem
         label='publicKey'

@@ -40,7 +40,7 @@ const UnconfirmedTransactions = () => {
   return (
     <CardWrapper title='Unconfirmed Transactions'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={unconfirmedTransactions.length === 0}>
           {unconfirmedTransactions.map((transaction) => (
             <TableRow key={transaction.transaction}>
               <TableCell

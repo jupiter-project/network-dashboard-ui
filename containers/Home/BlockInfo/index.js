@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   value: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: theme.custom.palette.blue
+    color: theme.custom.palette.green
   }
 }));
 
@@ -44,7 +44,7 @@ const BlockInfo = () => {
             Block generation Time
           </Typography>
           <Typography className={classes.value}>
-            {(blockInfo?.blockGenerationTime || 0).toFixed(3)}s
+            {(blockInfo?.blockGenerationTime || 0).toFixed(3)} s
           </Typography>
         </Grid>
         <Grid item xs={12}>

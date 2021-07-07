@@ -78,7 +78,7 @@ const BlockHistory = ({
   return (
     <CardWrapper title='Blocks'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={blocks.length === 0}>
           {blocks.map((block) => (
             <TableRow key={block.block}>
               <TableCell component='th' scope='row' onClick={blockHandler(block)} className={classes.block}>

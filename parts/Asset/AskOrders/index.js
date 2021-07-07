@@ -50,7 +50,7 @@ const AskOrders = ({
   return (
     <CardWrapper title='Ask Orders'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={askOrders.length === 0}>
           {askOrders.map((askOrder) => (
             <TableRow key={askOrder.order}>
               <TableCell component='th' scope='row'>

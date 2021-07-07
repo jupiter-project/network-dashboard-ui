@@ -59,7 +59,7 @@ const AccountAssets = ({
   return (
     <CardWrapper title='Assets'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={assets.length === 0}>
           {assets.map((asset) => (
             <TableRow key={asset.asset}>
               <TableCell component='th' scope='row' className={classes.block} onClick={assetHandler(asset)}>

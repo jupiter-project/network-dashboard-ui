@@ -54,7 +54,7 @@ const NextBlockGenerators = ({
   return (
     <CardWrapper title='Next Block Generators'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={generators.length === 0}>
           {generators.map((generator) => (
             <TableRow key={generator.accountRS}>
               <TableCell

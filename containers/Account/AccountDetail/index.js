@@ -28,7 +28,7 @@ const AccountDetail = ({
     <CardWrapper title={`Account: ${accountInfo?.accountRS || ''}`}>
       <ValueItem
         label='Name'
-        value={accountInfo?.name || ''}
+        value={accountInfo?.name || 'No Name'}
       />
       <ValueItem
         label='Balance'

@@ -58,7 +58,7 @@ const AssetList = ({
   return (
     <CardWrapper title='Assets'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={assets.length === 0}>
           {assets.slice(
             page * ROWS_PER_PAGE,
             page * ROWS_PER_PAGE + ROWS_PER_PAGE

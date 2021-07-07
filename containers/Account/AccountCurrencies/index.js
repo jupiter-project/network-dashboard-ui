@@ -49,7 +49,7 @@ const AccountCurrencies = ({
   return (
     <CardWrapper title='Currencies'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={currencies.length === 0}>
           {currencies.map((currency) => (
             <TableRow key={currency.currency}>
               <TableCell component='th' scope='row' className={classes.block}>

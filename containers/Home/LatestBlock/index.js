@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   value: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: theme.custom.palette.blue
+    color: theme.custom.palette.yellow
   }
 }));
 

@@ -67,7 +67,7 @@ const NFTList = ({
   return (
     <CardWrapper title='NFTs'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={openOrders.length === 0}>
           {openOrders.slice(
             page * ROWS_PER_PAGE,
             page * ROWS_PER_PAGE + ROWS_PER_PAGE

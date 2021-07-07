@@ -50,7 +50,7 @@ const BidOrders = ({
   return (
     <CardWrapper title='Bid Orders'>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={bidOrders.length === 0}>
           {bidOrders.map((bidOrder) => (
             <TableRow key={bidOrder.order}>
               <TableCell component='th' scope='row'>

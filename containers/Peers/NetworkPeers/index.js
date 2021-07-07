@@ -55,7 +55,7 @@ const NetworkPeers = () => {
   return (
     <CardWrapper title={`Peers: ${peers.length}`}>
       <Box className={classes.tableContainer}>
-        <TableContainer columns={columns}>
+        <TableContainer columns={columns} isEmpty={peers.length === 0}>
           {peers.slice(
             page * ROWS_PER_PAGE,
             page * ROWS_PER_PAGE + ROWS_PER_PAGE

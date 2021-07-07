@@ -6,6 +6,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TableContainer = ({
+  isEmpty = false,
   columns,
   className,
   children
@@ -42,7 +44,15 @@ const TableContainer = ({
         </TableRow>
       </TableHead>
       <TableBody>
-        {children}
+        {isEmpty ? (
+          <TableRow>
+            <TableCell colSpan={columns.length} align='center'>
+              <Typography variant='h5'>
+                No Data
+              </Typography>
+            </TableCell>
+          </TableRow>
+        ) : children}
       </TableBody>
     </Table>
 
