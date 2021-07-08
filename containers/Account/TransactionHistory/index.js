@@ -10,7 +10,8 @@ import {
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
-import getMainType from 'utils/helpers/types/getMainType'
+import AccountItem from 'parts/AccountItem'
+import getType from 'utils/helpers/types/getType'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
@@ -29,6 +30,7 @@ const columns = [
   { id: 'id', label: 'ID', minWidth: 90 },
   { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
   { id: 'sender', label: 'Sender', minWidth: 120 },
+  { id: 'recipient', label: 'Recipient', minWidth: 120 },
   { id: 'type', label: 'Type', minWidth: 120 },
   { id: 'fee', label: 'Amt + Fee', minWidth: 140 },
 ];
@@ -76,10 +78,19 @@ const TransactionHistory = ({
                 {getDateFromTimestamp(transaction.timestamp)}
               </TableCell>
               <TableCell>
-                {transaction.senderRS}
+                <AccountItem
+                  account={transaction.sender}
+                  accountRS={transaction.senderRS}
+                />
               </TableCell>
               <TableCell>
-                {getMainType(transaction.type)}
+                <AccountItem
+                  account={transaction.recipient}
+                  accountRS={transaction.recipientRS}
+                />
+              </TableCell>
+              <TableCell>
+                {getType(transaction.type, transaction.subtype)}
               </TableCell>
               <TableCell>
                 {`${transaction.amountNQT / NQT_WEIGHT} + ${transaction.feeNQT / NQT_WEIGHT}`}

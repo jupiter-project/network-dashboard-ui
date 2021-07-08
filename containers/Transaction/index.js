@@ -5,8 +5,8 @@ import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import * as jupiterAPI from 'services/api-jupiter'
+import TransactionDetail from 'parts/Block/TransactionDetail'
 import TransactionHistory from './TransactionHistory'
-import TransactionDetail from './TransactionDetail'
 
 const useStyles = makeStyles(theme => ({
   root: {

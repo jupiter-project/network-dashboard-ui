@@ -12,7 +12,7 @@ import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
 import AccountItem from 'parts/AccountItem'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
-import getMainType from 'utils/helpers/types/getMainType'
+import getType from 'utils/helpers/types/getType'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +60,7 @@ const UnconfirmedTransactions = () => {
                 />
               </TableCell>
               <TableCell>
-                {getMainType(transaction.type)}
+                {getType(transaction.type, transaction.subtype)}
               </TableCell>
               <TableCell>
                 {`${transaction.amountNQT / NQT_WEIGHT} + ${transaction.feeNQT / NQT_WEIGHT}`}

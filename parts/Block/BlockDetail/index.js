@@ -12,13 +12,28 @@ const BlockDetail = ({
 }) => {
 
   return (
-    <CardWrapper title={`Block: ${selectedBlock.block}`}>
+    <CardWrapper
+      title={`Block: ${selectedBlock.block}`}
+      link={LINKS.BLOCK.HREF.replace('[block]', selectedBlock.block)}
+    >
       <ValueItem
         label='Height'
         value={selectedBlock.height}
       />
       <ValueItem
-        label='Cumulative diff'
+        label='Transactions'
+        value={selectedBlock.numberOfTransactions}
+      />
+      <ValueItem
+        label='Base target'
+        value={selectedBlock.baseTarget}
+      />
+      <ValueItem
+        label='Version'
+        value={selectedBlock.version}
+      />
+      <ValueItem
+        label='Cumulative Diff'
         value={selectedBlock.cumulativeDifficulty}
       />
       <ValueItem
@@ -30,17 +45,38 @@ const BlockDetail = ({
         value={`${selectedBlock.totalAmountNQT / NQT_WEIGHT} + ${selectedBlock.totalFeeNQT / NQT_WEIGHT} JUP`}
       />
       <ValueItem
+        label='Payload'
+        value={`${selectedBlock.payloadLength} / 44880`}
+      />
+      <ValueItem
+        label='Payload Hash'
+        value={selectedBlock.payloadHash}
+      />
+      <ValueItem
+        label='Block Signature'
+        value={selectedBlock.blockSignature}
+      />
+      <ValueItem
         label='Generator'
         value={selectedBlock.generatorRS}
         link={LINKS.ACCOUNT.HREF.replace('[account]', selectedBlock.generator)}
       />
       <ValueItem
-        label='Payload'
-        value={`${selectedBlock.payloadLength} / 44880`}
+        label='Generation Signature'
+        value={selectedBlock.generationSignature}
       />
       <ValueItem
-        label='Base target'
-        value={selectedBlock.baseTarget}
+        label='Generation PublicKey'
+        value={selectedBlock.generatorPublicKey}
+      />
+      <ValueItem
+        label='Previous Block'
+        value={selectedBlock.previousBlock}
+        link={LINKS.BLOCK.HREF.replace('[block]', selectedBlock.previousBlock)}
+      />
+      <ValueItem
+        label='Previous Block Hash'
+        value={selectedBlock.previousBlockHash}
       />
     </CardWrapper>
   )

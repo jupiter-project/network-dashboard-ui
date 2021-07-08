@@ -30,11 +30,11 @@ const getBlockchainStatus = async () => {
 }
 
 const getNextBlockGenerators = async () => {
-  return await apiAxios.get(`/nxt?requestType=getNextBlockGenerators&limit=10`)
+  return await apiAxios.get(`/nxt?requestType=getNextBlockGenerators&limit=30`)
 }
 
 const getAccount = async (account) => {
-  return await apiAxios.get(`/nxt?requestType=getAccount&account=${account}`)
+  return await apiAxios.get(`/nxt?requestType=getAccount&account=${account}&includeLessors=true&includeEffectiveBalance=true`)
 }
 
 const getForgeAsset = async () => {
