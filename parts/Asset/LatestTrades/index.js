@@ -37,13 +37,13 @@ const LatestTrades = ({
 }) => {
   const classes = useStyles();
 
-  const [trades, setBidOrders] = useState([])
+  const [trades, setTrades] = useState([])
 
   useEffect(() => {
     const load = async () => {
       try {
         const { trades = [] } = await jupiterAPI.getLastTrades(selectedAsset.asset);
-        setBidOrders(trades)
+        setTrades(trades)
       } catch (error) {
         console.log(error)
       }

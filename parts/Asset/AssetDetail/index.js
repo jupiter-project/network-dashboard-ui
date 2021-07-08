@@ -10,7 +10,10 @@ const AssetDetail = ({
 }) => {
 
   return (
-    <CardWrapper title={`Asset: ${selectedAsset.asset}`}>
+    <CardWrapper
+      title={`Asset: ${selectedAsset.asset}`}
+      link={LINKS.ASSET.HREF.replace('[asset]', selectedAsset.asset)}
+    >
       <ValueItem
         label='Name'
         value={selectedAsset.name}

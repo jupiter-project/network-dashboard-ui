@@ -10,6 +10,7 @@ import {
 import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
+import AccountItem from 'parts/AccountItem'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 const columns = [
   { id: 'order', label: 'Order', minWidth: 120 },
+  { id: 'account', label: 'Account', minWidth: 120 },
   { id: 'price', label: 'Price', minWidth: 90 },
-  { id: 'quantity', label: 'Quantity', minWidth: 120 },
+  { id: 'quantity', label: 'Quantity', minWidth: 90 },
 ];
 
 const BidOrders = ({
@@ -55,6 +57,12 @@ const BidOrders = ({
             <TableRow key={bidOrder.order}>
               <TableCell component='th' scope='row'>
                 {bidOrder.order}
+              </TableCell>
+              <TableCell>
+                <AccountItem
+                  account={bidOrder.account}
+                  accountRS={bidOrder.accountRS}
+                />
               </TableCell>
               <TableCell>
                 {bidOrder.priceNQT / NQT_WEIGHT} JUP

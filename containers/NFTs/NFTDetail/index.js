@@ -43,6 +43,10 @@ const NFTDetail = ({
         value={info.description}
       />
       <ValueItem
+        label='Type'
+        value={item.type}
+      />
+      <ValueItem
         label='Generator'
         value={item.accountRS}
         link={LINKS.ACCOUNT.HREF.replace('[account]', item.account)}
@@ -50,6 +54,10 @@ const NFTDetail = ({
       <ValueItem
         label='Price'
         value={`${item.priceNQT / NQT_WEIGHT} JUP`}
+      />
+      <ValueItem
+        label='Quantity'
+        value={info.quantityQNT}
       />
       <ValueItem
         label='Asset'

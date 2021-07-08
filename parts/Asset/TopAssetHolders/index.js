@@ -34,14 +34,14 @@ const TopAssetHolders = ({
 }) => {
   const classes = useStyles();
 
-  const [accountAssets, setBidOrders] = useState([])
+  const [accountAssets, setAccountAssets] = useState([])
   const [page, setPage] = useState(0)
 
   useEffect(() => {
     const load = async () => {
       try {
         const { accountAssets = [] } = await jupiterAPI.getAssetAccounts(selectedAsset.asset);
-        setBidOrders(accountAssets)
+        setAccountAssets(accountAssets)
       } catch (error) {
         console.log(error)
       }
