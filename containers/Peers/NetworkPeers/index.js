@@ -36,9 +36,14 @@ const NetworkPeers = ({
   page,
   peers,
   rowsPerPage,
-  setPage
+  setPage,
+  setSelectedPeer
 }) => {
   const classes = useStyles();
+
+  const peerHandler = (peer) => () => {
+    setSelectedPeer(peer)
+  }
 
   return (
     <CardWrapper title={`Peers: ${peers.length}`}>
@@ -48,7 +53,7 @@ const NetworkPeers = ({
             page * rowsPerPage,
             page * rowsPerPage + rowsPerPage
           ).map((peer, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} onClick={peerHandler(peer)}>
               <TableCell
                 component='th'
                 scope='row'

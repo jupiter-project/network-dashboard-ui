@@ -21,6 +21,10 @@ const TransactionDetail = ({
         value={transaction.transactionIndex}
       />
       <ValueItem
+        label='Type'
+        value={getType(transaction.type, transaction.subtype)}
+      />
+      <ValueItem
         label='Version'
         value={transaction.version}
       />
@@ -37,13 +41,44 @@ const TransactionDetail = ({
         value={getDateFromTimestamp(transaction.timestamp)}
       />
       <ValueItem
-        label='phased'
+        label='Phased'
         value={transaction.phased ? 'True' : 'False'}
       />
       <ValueItem
         label='Amt + Fee'
         value={`${transaction.amountNQT / NQT_WEIGHT} + ${transaction.feeNQT / NQT_WEIGHT} JUP`}
       />
+      {transaction?.attachment?.message &&
+        <ValueItem
+          label='Attachment Message'
+          value={transaction.attachment.message}
+        />
+      }
+      {transaction?.attachment?.messageIsText &&
+        <ValueItem
+          label='Attachment Message Is Text'
+          value={transaction.attachment.messageIsText ? 'True' : 'False'}
+        />
+      }
+      {transaction?.attachment?.asset &&
+        <ValueItem
+          label='Attachment Asset'
+          value={transaction.attachment.asset}
+          link={LINKS.ASSET.HREF.replace('[asset]', transaction.attachment.asset)}
+        />
+      }
+      {transaction?.attachment?.priceNQT &&
+        <ValueItem
+          label='Attachment Price'
+          value={`${transaction.attachment.priceNQT / NQT_WEIGHT} JUP`}
+        />
+      }
+      {transaction?.attachment?.quantityQNT &&
+        <ValueItem
+          label='Attachment Quantity'
+          value={transaction.attachment.quantityQNT}
+        />
+      }
       <ValueItem
         label='Block ID'
         value={transaction.block}
@@ -73,10 +108,6 @@ const TransactionDetail = ({
       <ValueItem
         label='Sender Public Key'
         value={transaction.senderPublicKey}
-      />
-      <ValueItem
-        label='Type'
-        value={getType(transaction.type, transaction.subtype)}
       />
     </CardWrapper>
   )

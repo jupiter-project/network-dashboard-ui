@@ -9,39 +9,30 @@ import {
 
 import * as geoLocationAPI from 'services/api-geo-location'
 import CardWrapper from 'parts/CardWrapper'
+import { isEmpty } from 'utils/helpers/utility'
 
 const geoUrl =
   'https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json';
 
 const PeerMaps = ({
-  page,
-  rowsPerPage,
-  peers
+  peer
 }) => {
-  const [markers, setMarkers] = useState([])
+  const [marker, setMarker] = useState({})
 
   useEffect(() => {
-    getMakers()
+    getMaker()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [peers, page, rowsPerPage])
+  }, [peer])
 
-  const getMakers = async () => {
+  const getMaker = async () => {
     try {
-      const peersArray = peers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-
-      let markers = [];
-      for (const peer of peersArray) {
-        const { latitude = 0, longitude = 0 } = await geoLocationAPI.getGeoLocation(peer.address);
-        markers = [
-          ...markers,
-          {
-            markerOffset: 15,
-            name: peer.platform,
-            coordinates: [longitude, latitude]
-          }
-        ]
+      const { latitude = 0, longitude = 0 } = await geoLocationAPI.getGeoLocation(peer.address);
+      const marker = {
+        markerOffset: 15,
+        name: peer.platform,
+        coordinates: [longitude, latitude]
       }
-      setMarkers(markers)
+      setMarker(marker)
     } catch (error) {
       console.log(error)
     }
@@ -63,8 +54,8 @@ const PeerMaps = ({
               ))
             }
           </Geographies>
-          {markers.map(({ name, coordinates, markerOffset }) => (
-            <Marker key={name} coordinates={coordinates}>
+          {!isEmpty(marker) &&
+            <Marker coordinates={marker?.coordinates}>
               <g
                 fill='none'
                 stroke='#2774FE'
@@ -78,13 +69,13 @@ const PeerMaps = ({
               </g>
               <text
                 textAnchor='middle'
-                y={markerOffset}
+                y={marker?.markerOffset}
                 style={{ fontFamily: 'system-ui', fill: '#2774FE' }}
               >
-                {name}
+                {marker?.name}
               </text>
             </Marker>
-          ))}
+          }
         </ComposableMap>
       </div>
     </CardWrapper>
