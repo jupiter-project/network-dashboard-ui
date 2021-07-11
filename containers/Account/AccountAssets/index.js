@@ -61,8 +61,8 @@ const AccountAssets = ({
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns} isEmpty={assets.length === 0}>
           {assets.map((asset) => (
-            <TableRow key={asset.asset}>
-              <TableCell component='th' scope='row' className={classes.block} onClick={assetHandler(asset)}>
+            <TableRow key={asset.asset} onClick={assetHandler(asset)}>
+              <TableCell component='th' scope='row' className={classes.block}>
                 {asset.asset}
               </TableCell>
               <TableCell>

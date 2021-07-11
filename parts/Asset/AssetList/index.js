@@ -63,8 +63,8 @@ const AssetList = ({
             page * ROWS_PER_PAGE,
             page * ROWS_PER_PAGE + ROWS_PER_PAGE
           ).map((asset) => (
-            <TableRow key={asset.asset}>
-              <TableCell component='th' scope='row' onClick={assetHandler(asset)} className={classes.asset}>
+            <TableRow key={asset.asset} onClick={assetHandler(asset)} >
+              <TableCell component='th' scope='row' className={classes.asset}>
                 {asset.asset}
               </TableCell>
               <TableCell>

@@ -54,9 +54,7 @@ const TransactionHistory = () => {
           {transactions.map((transaction) => (
             <TableRow key={transaction.transaction}>
               <TableCell component='th' scope='row' >
-                <TransactionItem
-                  transaction={transaction.transaction}
-                />
+                <TransactionItem transaction={transaction.transaction} />
               </TableCell>
               <TableCell>
                 {getDateFromTimestamp(transaction.timestamp)}

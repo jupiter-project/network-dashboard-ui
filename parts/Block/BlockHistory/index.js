@@ -81,8 +81,8 @@ const BlockHistory = ({
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns} isEmpty={blocks.length === 0}>
           {blocks.map((block) => (
-            <TableRow key={block.block}>
-              <TableCell component='th' scope='row' onClick={blockHandler(block)} className={classes.block}>
+            <TableRow key={block.block} onClick={blockHandler(block)}>
+              <TableCell component='th' scope='row' className={classes.block}>
                 {block.height}
               </TableCell>
               <TableCell>

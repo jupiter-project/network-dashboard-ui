@@ -56,12 +56,11 @@ const NextBlockGenerators = ({
       <Box className={classes.tableContainer}>
         <TableContainer columns={columns} isEmpty={generators.length === 0}>
           {generators.map((generator) => (
-            <TableRow key={generator.accountRS}>
+            <TableRow key={generator.accountRS} onClick={generatorHandler(generator)}>
               <TableCell
                 component='th'
                 scope='row'
                 className={classes.generator}
-                onClick={generatorHandler(generator)}
               >
                 {generator.accountRS}
               </TableCell>
