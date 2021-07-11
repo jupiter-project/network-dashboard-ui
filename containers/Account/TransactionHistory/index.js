@@ -30,7 +30,6 @@ const columns = [
   { id: 'id', label: 'ID', minWidth: 90 },
   { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
   { id: 'sender', label: 'Sender', minWidth: 120 },
-  { id: 'recipient', label: 'Recipient', minWidth: 120 },
   { id: 'type', label: 'Type', minWidth: 120 },
   { id: 'fee', label: 'Amt + Fee', minWidth: 140 },
 ];
@@ -81,12 +80,6 @@ const TransactionHistory = ({
                 <AccountItem
                   account={transaction.sender}
                   accountRS={transaction.senderRS}
-                />
-              </TableCell>
-              <TableCell>
-                <AccountItem
-                  account={transaction.recipient}
-                  accountRS={transaction.recipientRS}
                 />
               </TableCell>
               <TableCell>
