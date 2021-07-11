@@ -37,6 +37,14 @@ const theme = responsiveFontSizes(createMuiTheme({
         boxShadow: '0 2px 12px 0 #2774FE',
       }
     },
+    MuiTableRow: {
+      root: {
+        cursor: 'pointer',
+        '&:hover': {
+          boxShadow: '2px 2px 12px 0 #2774FE',
+        }
+      }
+    },
   },
   palette: {
     primary: {
