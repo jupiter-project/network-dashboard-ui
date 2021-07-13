@@ -12,6 +12,7 @@ import TableContainer from 'parts/Table/TableContainer'
 import TablePagination from 'parts/Table/TablePagination'
 import CardWrapper from 'parts/CardWrapper'
 import AccountItem from 'parts/AccountItem'
+import { isEmpty } from 'utils/helpers/utility'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -44,11 +45,15 @@ const AssetList = ({
       try {
         const { assets = [] } = await jupiterAPI.getAllAssets();
         setAssets(assets)
+        if (!isEmpty(assets)) {
+          setSelectedAsset(assets[0])
+        }
       } catch (error) {
         console.log(error)
       }
     }
     load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
 
   const assetHandler = (asset) => () => {

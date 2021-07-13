@@ -15,6 +15,7 @@ import AccountItem from 'parts/AccountItem'
 import ProductContent from 'parts/ProductContent'
 import getJSONParse from 'utils/helpers/getJSONParse'
 import { NQT_WEIGHT } from 'utils/constants/common'
+import { isEmpty } from 'utils/helpers/utility'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -53,11 +54,15 @@ const NFTList = ({
       try {
         const { openOrders = [] } = await jupiterAPI.searchAllOpenAskOrders();
         setOpenOrders(openOrders)
+        if (!isEmpty(openOrders)) {
+          setSelectedNFT(openOrders[0])
+        }
       } catch (error) {
         console.log(error)
       }
     }
     load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const nftHandler = (order) => () => {

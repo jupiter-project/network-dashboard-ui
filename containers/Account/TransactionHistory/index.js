@@ -12,6 +12,7 @@ import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
 import AccountItem from 'parts/AccountItem'
 import getType from 'utils/helpers/types/getType'
+import { isEmpty } from 'utils/helpers/utility'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
@@ -53,11 +54,15 @@ const TransactionHistory = ({
         }
         const { transactions = [] } = await jupiterAPI.getBlockchainTransactions(params);
         setTransactions(transactions)
+        if (!isEmpty(transactions)) {
+          setSelectedTransaction(transactions[0])
+        }
       } catch (error) {
         console.log(error)
       }
     }
     load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, page])
 
   const transactionHandler = (transaction) => () => {

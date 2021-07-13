@@ -44,6 +44,9 @@ const Peers = () => {
   useEffect(() => {
     if (!query) {
       setFilterPeers(peers)
+      if (!isEmpty(peers)) {
+        setSelectedPeer(peers[0])
+      }
     } else {
       let filterPeers = [];
       for (const peer of peers) {
@@ -53,7 +56,11 @@ const Peers = () => {
         }
       }
       setFilterPeers(filterPeers)
+      if (!isEmpty(filterPeers)) {
+        setSelectedPeer(filterPeers[0])
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, peers])
 
   return (

@@ -11,6 +11,7 @@ import * as jupiterAPI from 'services/api-jupiter'
 import TableContainer from 'parts/Table/TableContainer'
 import CardWrapper from 'parts/CardWrapper'
 import { getDateFromTimestamp } from 'utils/helpers/getTimestamp'
+import { isEmpty } from 'utils/helpers/utility'
 
 const useStyles = makeStyles((theme) => ({
   tableContainer: {
@@ -40,11 +41,15 @@ const NextBlockGenerators = ({
       try {
         const { generators = [] } = await jupiterAPI.getNextBlockGenerators();
         setGenerators(generators)
+        if (!isEmpty(generators)) {
+          setSelectedGenerator(generators[0])
+        }
       } catch (error) {
         console.log(error)
       }
     }
     load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const generatorHandler = (generator) => () => {
