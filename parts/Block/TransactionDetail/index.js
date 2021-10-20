@@ -45,8 +45,12 @@ const TransactionDetail = ({
         value={transaction.phased ? 'True' : 'False'}
       />
       <ValueItem
-        label='Amt + Fee'
-        value={`${transaction.amountNQT / NQT_WEIGHT} + ${transaction.feeNQT / NQT_WEIGHT} JUP`}
+        label='Amount'
+        value={`${transaction.amountNQT / NQT_WEIGHT} JUP`}
+      />
+      <ValueItem
+        label='Fee'
+        value={`${transaction.feeNQT / NQT_WEIGHT} JUP`}
       />
       {transaction?.attachment?.message &&
         <ValueItem

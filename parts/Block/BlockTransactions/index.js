@@ -31,7 +31,8 @@ const columns = [
   { id: 'timestamp', label: 'Timestamp', minWidth: 120 },
   { id: 'sender', label: 'Sender', minWidth: 120 },
   { id: 'type', label: 'Type', minWidth: 120 },
-  { id: 'fee', label: 'Amt + Fee', minWidth: 140 },
+  { id: 'amount', label: 'Amount', minWidth: 70 },
+  { id: 'fee', label: 'Fee', minWidth: 70 },
 ];
 
 const BlockTransactions = ({
@@ -71,7 +72,10 @@ const BlockTransactions = ({
                 {getType(transaction.type, transaction.subtype)}
               </TableCell>
               <TableCell>
-                {`${transaction.amountNQT / NQT_WEIGHT} + ${transaction.feeNQT / NQT_WEIGHT}`}
+                {transaction.amountNQT / NQT_WEIGHT}
+              </TableCell>
+              <TableCell>
+                {transaction.feeNQT / NQT_WEIGHT}
               </TableCell>
             </TableRow>
           ))}

@@ -41,8 +41,12 @@ const BlockDetail = ({
         value={getDateFromTimestamp(selectedBlock.timestamp)}
       />
       <ValueItem
-        label='Amt + Fee'
-        value={`${selectedBlock.totalAmountNQT / NQT_WEIGHT} + ${selectedBlock.totalFeeNQT / NQT_WEIGHT} JUP`}
+        label='Amount'
+        value={`${selectedBlock.totalAmountNQT / NQT_WEIGHT} JUP`}
+      />
+      <ValueItem
+        label='Fee'
+        value={`${selectedBlock.totalFeeNQT / NQT_WEIGHT} JUP`}
       />
       <ValueItem
         label='Payload'

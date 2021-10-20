@@ -1,4 +1,4 @@
-const PROXY_URL = process.env.NODE_ENV === 'production'
+const PROXY_URL = process.env.NODE_ENV !== 'production'
   ? 'https://stats.jup.io/'
   : 'http://localhost:8000'
 

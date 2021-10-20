@@ -33,7 +33,8 @@ const columns = [
   { id: 'block', label: 'Block', minWidth: 90 },
   { id: 'age', label: 'Age', minWidth: 120 },
   { id: 'txs', label: 'Txs', minWidth: 120 },
-  { id: 'fee', label: 'Amt + Fee', minWidth: 140 },
+  { id: 'amount', label: 'Amount', minWidth: 70 },
+  { id: 'fee', label: 'Fee', minWidth: 70 },
   { id: 'generatorRS', label: 'Generator', minWidth: 140 },
 ];
 
@@ -95,7 +96,10 @@ const BlockHistory = ({
                 {block.transactions.length}
               </TableCell>
               <TableCell>
-                {`${block.totalAmountNQT / NQT_WEIGHT} + ${block.totalFeeNQT / NQT_WEIGHT}`}
+                {block.totalAmountNQT / NQT_WEIGHT}
+              </TableCell>
+              <TableCell>
+                {block.totalFeeNQT / NQT_WEIGHT}
               </TableCell>
               <TableCell>
                 <AccountItem
