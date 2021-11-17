@@ -87,7 +87,7 @@ const theme = responsiveFontSizes(createMuiTheme({
       border: '#999999'
     },
     layout: {
-      topAppBarHeight: 60,
+      topAppBarHeight: 85,
       maxDesktopWidth: 1110,
       maxMarketPlaceWidth: 1366
     },

@@ -24,7 +24,7 @@ const AssetDetail = ({
       />
       <ValueItem
         label='Quantity'
-        value={selectedAsset.quantityQNT}
+        value={selectedAsset.quantityQNT / (10 ** selectedAsset.decimals)}
       />
       <ValueItem
         label='Decimals'

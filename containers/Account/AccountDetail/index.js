@@ -23,18 +23,6 @@ const AccountDetail = ({
         value={`${accountInfo.balanceNQT / NQT_WEIGHT} JUP`}
       />
       <ValueItem
-        label='Eff. balance'
-        value={`${accountInfo.effectiveBalanceNXT / NQT_WEIGHT} JUP`}
-      />
-      <ValueItem
-        label='Unconfirmed balance'
-        value={`${accountInfo.unconfirmedBalanceNQT / NQT_WEIGHT} JUP`}
-      />
-      <ValueItem
-        label='Forged balance'
-        value={`${accountInfo.forgedBalanceNQT / NQT_WEIGHT} JUP`}
-      />
-      <ValueItem
         label='Fees earned'
         value={`${accountInfo.guaranteedBalanceNQT / NQT_WEIGHT} JUP`}
       />

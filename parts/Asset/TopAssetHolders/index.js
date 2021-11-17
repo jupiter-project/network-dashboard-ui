@@ -65,7 +65,7 @@ const TopAssetHolders = ({
                 />
               </TableCell>
               <TableCell>
-                {accountAsset.quantityQNT}
+                {accountAsset.quantityQNT / (10 ** accountAsset.decimals)}
               </TableCell>
             </TableRow>
           ))}

@@ -46,14 +46,14 @@ const GeneratorDetail = ({
         label='Balance'
         value={`${generatorInfo.balanceNQT / NQT_WEIGHT} JUP`}
       />
-      <ValueItem
+      {/* <ValueItem
         label='Eff. balance'
         value={`${generator.effectiveBalanceNXT / NQT_WEIGHT} JUP`}
       />
       <ValueItem
         label='Forged balance'
         value={`${generatorInfo.forgedBalanceNQT / NQT_WEIGHT} JUP`}
-      />
+      /> */}
       <ValueItem
         label='publicKey'
         value={generatorInfo.publicKey}

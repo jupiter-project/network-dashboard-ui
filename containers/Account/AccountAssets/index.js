@@ -69,7 +69,7 @@ const AccountAssets = ({
                 {asset.name}
               </TableCell>
               <TableCell>
-                {asset.quantityQNT}
+                {asset.quantityQNT / (10 ** asset.decimals)}
               </TableCell>
             </TableRow>
           ))}

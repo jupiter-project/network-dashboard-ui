@@ -8,7 +8,7 @@ import TransactionIcon from '@material-ui/icons/AirportShuttle'
 
 import { useBlock } from 'contexts/block-context'
 import CardWrapper from 'parts/CardWrapper'
-import SearchInput from './SearchInput'
+import SearchInput from 'parts/SearchInput'
 import { NQT_WEIGHT } from 'utils/constants/common'
 
 const useStyles = makeStyles(theme => ({

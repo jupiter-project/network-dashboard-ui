@@ -7,6 +7,7 @@ import Logo from 'components/Logo'
 import NavBarMenu from './NavBarMenu'
 import NavDropMenu from './NavDropMenu'
 import { useCommonStyles } from 'styles/use-styles'
+import SearchInput from 'parts/SearchInput'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -21,6 +22,10 @@ const useStyles = makeStyles((theme) => ({
   toolBar: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  container: {
+    display: 'flex',
+    alignItems: 'center'
   }
 }));
 
@@ -35,8 +40,11 @@ const TopAppBar = () => {
     >
       <Toolbar className={clsx(classes.toolBar, commonClasses.containerWidth)}>
         <Logo />
-        <NavBarMenu />
-        <NavDropMenu />
+        <div className={classes.container}>
+          <SearchInput />
+          <NavBarMenu />
+          <NavDropMenu />
+        </div>
       </Toolbar>
     </AppBar>
   );

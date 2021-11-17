@@ -1,5 +1,4 @@
-
-const GENESIS_TIMESTAMP = Math.round(new Date('2017-10-21 23:19:28') / 1000);
+const GENESIS_TIMESTAMP = Math.round(new Date('2017-10-21T23:19:28') / 1000);
 
 const getTimestamp = (date) => {
   return Math.round(date / 1000) - GENESIS_TIMESTAMP;

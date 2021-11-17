@@ -30,7 +30,7 @@ const ROWS_PER_PAGE = 8;
 const INTERVAL_MS = 30000;
 const columns = [
   { id: 'height', label: 'Height', minWidth: 90 },
-  { id: 'block', label: 'Block', minWidth: 90 },
+  // { id: 'block', label: 'Block', minWidth: 90 },
   { id: 'age', label: 'Age', minWidth: 120 },
   { id: 'txs', label: 'Txs', minWidth: 120 },
   { id: 'amount', label: 'Amount', minWidth: 70 },
@@ -86,9 +86,9 @@ const BlockHistory = ({
               <TableCell component='th' scope='row' className={classes.block}>
                 {block.height}
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 {block.block}
-              </TableCell>
+              </TableCell> */}
               <TableCell>
                 {getDateFromTimestamp(block.timestamp)}
               </TableCell>
