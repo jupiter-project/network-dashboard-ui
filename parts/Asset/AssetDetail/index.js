@@ -16,11 +16,7 @@ const AssetDetail = ({
     >
       <ValueItem
         label='Name'
-        value={selectedAsset.name}
-      />
-      <ValueItem
-        label='Description'
-        value={selectedAsset.description}
+        value={selectedAsset.name === 'nftleda' ? selectedAsset.description : selectedAsset.name}
       />
       <ValueItem
         label='Quantity'

@@ -49,6 +49,7 @@ const TopAssetHolders = ({
     load()
   }, [selectedAsset])
 
+  console.log(accountAssets)
   return (
     <CardWrapper title='Top Asset Holders'>
       <Box className={classes.tableContainer}>
@@ -65,7 +66,7 @@ const TopAssetHolders = ({
                 />
               </TableCell>
               <TableCell>
-                {accountAsset.quantityQNT / (10 ** accountAsset.decimals)}
+                {accountAsset.quantityQNT}
               </TableCell>
             </TableRow>
           ))}

@@ -11,6 +11,7 @@ import LINKS from 'utils/constants/links'
 const TransactionDetail = ({
   transaction
 }) => {
+  console.log(transaction)
   return (
     <CardWrapper
       title={`Transaction: ${transaction.transaction}`}
@@ -39,6 +40,14 @@ const TransactionDetail = ({
       <ValueItem
         label='Transaction Timestamp'
         value={getDateFromTimestamp(transaction.timestamp)}
+      />
+      <ValueItem
+        label='Sender'
+        value={transaction.senderRS}
+      />
+       <ValueItem
+        label='Receiver'
+        value={transaction.recipientRS}
       />
       <ValueItem
         label='Phased'

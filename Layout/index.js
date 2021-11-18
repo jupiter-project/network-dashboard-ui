@@ -18,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     flex: '1 0 auto',
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(8),
     backgroundColor: theme.palette.background.primary
   },
 }));

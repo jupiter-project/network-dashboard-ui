@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: theme.spacing(0, 2)
   },
   item: {
     fontSize: 15,

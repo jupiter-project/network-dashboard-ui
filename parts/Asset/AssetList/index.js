@@ -73,7 +73,7 @@ const AssetList = ({
                 {asset.asset}
               </TableCell>
               <TableCell>
-                {asset.name}
+                {asset.name === 'nftleda' ? asset.description : asset.name}
               </TableCell>
               <TableCell>
                 {asset.quantityQNT / (10 ** asset.decimals)}
