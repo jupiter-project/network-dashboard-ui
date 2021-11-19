@@ -46,7 +46,7 @@ const FooterJupiter = () => {
           color='textPrimary'
           className={classes.title}
         >
-          Powered by Jupiter Chain
+          Powered by Jupiter
         </Typography>
       </div>
       <Typography

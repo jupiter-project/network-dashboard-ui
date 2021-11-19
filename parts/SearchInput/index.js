@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import * as jupiterAPI from 'services/api-jupiter'
 import LINKS from 'utils/constants/links'
 import usePopUp from 'utils/hooks/usePopUp'
+import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
   searchContainer: {
@@ -59,7 +60,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SearchInput = () => {
+const SearchInput = ({
+  className
+}) => {
   const classes = useStyles();
   const router = useRouter();
   const { setPopUp } = usePopUp()
@@ -129,7 +132,7 @@ const SearchInput = () => {
   }, [setQuery]);
 
   return (
-    <div className={classes.searchContainer}>
+    <div className={clsx(classes.searchContainer, className)}>
       <OutlinedInput
         className={classes.textField}
         classes={{

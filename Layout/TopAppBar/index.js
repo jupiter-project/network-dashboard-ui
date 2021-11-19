@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     alignItems: 'center'
+  },
+  search: {
+    width: 450
   }
 }));
 
@@ -41,7 +44,7 @@ const TopAppBar = () => {
       <Toolbar className={clsx(classes.toolBar, commonClasses.containerWidth)}>
         <Logo />
         <div className={classes.container}>
-          <SearchInput />
+          <SearchInput className={classes.search}/>
           <NavBarMenu />
           <NavDropMenu />
         </div>
