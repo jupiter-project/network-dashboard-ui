@@ -33,15 +33,15 @@ const theme = responsiveFontSizes(createMuiTheme({
     },
     MuiCard: {
       root: {
-        borderRadius: 10,
-        boxShadow: '0 2px 12px 0 #2774FE',
+        borderRadius: 4,
+        boxShadow: '0 2px 6px 0 #2774FE',
       }
     },
     MuiTableRow: {
       root: {
         cursor: 'pointer',
         '&:hover': {
-          boxShadow: '2px 2px 12px 0 #2774FE',
+          boxShadow: '0 2px 6px 0 #2774FE',
         }
       }
     },
@@ -55,7 +55,7 @@ const theme = responsiveFontSizes(createMuiTheme({
     },
     secondary: {
       light: '#555e6c',
-      main: '#0066ff',
+      main: '#555e6c',
       dark: '#1e2532',
       contrastText: '#ffffff'
     },

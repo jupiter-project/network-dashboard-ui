@@ -16,6 +16,7 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
+    "coingecko-api": "^1.0.10",
     "ethers": "^5.3.0",
     "moment": "^2.29.1",
     "next": "10.0.4",

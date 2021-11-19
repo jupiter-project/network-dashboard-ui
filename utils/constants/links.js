@@ -44,6 +44,10 @@ const LINKS = Object.freeze({
     TITLE: 'NFT details',
     HREF: 'https://leda.jup.io/nft-details/[asset]'
   },
+  EUROPA_EXTENSION: {
+    TITLE: 'Europa',
+    HREF: 'https://chrome.google.com/webstore/detail/jupiter-europa/gafpmgjlgaocgmlggjbpjmpedlebgnej'
+  }
 });
 
 export default LINKS;
